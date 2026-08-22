@@ -49,6 +49,8 @@ function AnalysisHistory({ onNavigate }) {
         return '📧'
       case 'url':
         return '🌐'
+      case 'image':
+        return '🖼️'
       case 'apk':
         return '📦'
       default:
@@ -89,7 +91,7 @@ function AnalysisHistory({ onNavigate }) {
       </div>
 
       <div className="history-filters">
-        {['ALL', 'MESSAGE', 'URL', 'APK'].map((type) => (
+        {['ALL', 'MESSAGE', 'URL', 'IMAGE', 'APK'].map((type) => (
           <button
             key={type}
             className={`filter-btn ${filterType === type ? 'active' : ''}`}
@@ -127,6 +129,9 @@ function AnalysisHistory({ onNavigate }) {
             </button>
             <button className="analyze-btn" onClick={() => onNavigate('url')}>
               🌐 Scan URL
+            </button>
+            <button className="analyze-btn" onClick={() => onNavigate('image')}>
+              🖼️ Scan Image
             </button>
             <button className="analyze-btn" onClick={() => onNavigate('apk')}>
               📦 Scan APK

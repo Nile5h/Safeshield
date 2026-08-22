@@ -54,6 +54,7 @@ def _serialize_doc(doc: dict) -> dict:
 
 def save_analysis(doc: dict) -> bool:
     """Save analysis document to MongoDB if configured, otherwise fallback to local JSON file."""
+    global analyses_collection
     # 1. MongoDB if configured
     if analyses_collection is not None:
         try:
@@ -61,6 +62,7 @@ def save_analysis(doc: dict) -> bool:
             return True
         except Exception as error:
             print(f"MongoDB save failed, falling back to local storage: {error}")
+            analyses_collection = None
 
     # 2. Local JSON file fallback
     with _file_lock:
@@ -128,6 +130,8 @@ def get_all_analyses(scan_type: str | None = None, limit: int = 100) -> list[dic
             item["target"] = item.get("original_url", item.get("normalized_url", "URL Scan"))
         elif item.get("type") == "apk":
             item["target"] = item.get("app_name") or item.get("filename") or item.get("package_name") or "APK Scan"
+        elif item.get("type") == "image":
+            item["target"] = item.get("filename", "Image Scan")
         else:
             item["target"] = "Unknown Scan"
 
@@ -160,7 +164,7 @@ def get_aggregated_stats() -> dict:
     total_scans = len(docs)
     verdicts = {"SAFE": 0, "FRAUD": 0, "SUSPICIOUS": 0}
     risk_levels = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0}
-    by_type = {"message": 0, "url": 0, "apk": 0}
+    by_type = {"message": 0, "url": 0, "apk": 0, "image": 0}
 
     for doc in docs:
         stype = doc.get("type", "message")

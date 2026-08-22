@@ -3,17 +3,6 @@ from pathlib import Path
 import sys
 from tempfile import NamedTemporaryFile
 from uuid import uuid4
-import sys
-from pathlib import Path
-
-BACKEND_DIR = Path(__file__).resolve().parent
-if str(BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(BACKEND_DIR))
-
-
-BACKEND_DIR = Path(__file__).resolve().parent
-if str(BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(BACKEND_DIR))
 
 BACKEND_DIR = Path(__file__).resolve().parent
 if str(BACKEND_DIR) not in sys.path:
@@ -24,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, ConfigDict
 
 from analyzer.apk_analyzer import analyze_apk
+from analyzer.image_analyzer import analyze_image
 from analyzer.message_analyzer import analyze_message
 from analyzer.url_analyzer import analyze_url
 from risk_engine import evaluate_message_risk, message_hash
@@ -89,6 +79,29 @@ class URLAnalysisResponse(BaseModel):
     rule_confidence: int
     domain_valid: bool
     live_inspection: dict = Field(default_factory=dict)
+
+
+class ImageAnalysisResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    analysis_id: str
+    filename: str
+    risk_score: int
+    risk_level: str
+    category: str
+    verdict: str
+    confidence: int
+    reasons: list[str]
+    detected_indicators: list[str]
+    recommendation: str
+    extracted_text: str
+    qr_codes: list[str]
+    extracted_urls: list[str]
+    message_analysis: dict | None = None
+    url_analyses: list[dict] = Field(default_factory=list)
+    ocr_status: str
+    qr_status: str
+
 
 
 # ── Authentication models & demo credentials ──────────────────────────────────
@@ -281,6 +294,92 @@ def analyze_url_endpoint(payload: URLRequest) -> URLAnalysisResponse:
         rule_confidence=analysis.rule_confidence,
         domain_valid=analysis.domain_valid,
         live_inspection=analysis.live_inspection or {},
+    )
+
+
+ALLOWED_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
+ALLOWED_IMAGE_MIME_TYPES = {"image/jpeg", "image/png", "image/webp", "image/bmp"}
+
+
+@app.post("/analyze/image", response_model=ImageAnalysisResponse)
+async def analyze_image_endpoint(file: UploadFile = File(...)) -> ImageAnalysisResponse:
+    if not file.filename:
+        raise HTTPException(
+            status_code=400,
+            detail="Filename is missing.",
+        )
+
+    file_ext = Path(file.filename).suffix.lower()
+    content_type = (file.content_type or "").lower()
+
+    if file_ext not in ALLOWED_IMAGE_EXTENSIONS and content_type not in ALLOWED_IMAGE_MIME_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid image format. Supported formats: JPEG, PNG, WEBP, BMP.",
+        )
+
+    image_bytes = await file.read()
+    if not image_bytes:
+        raise HTTPException(
+            status_code=400,
+            detail="Uploaded image file is empty.",
+        )
+
+    try:
+        result = analyze_image(image_bytes)
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=str(exc),
+        )
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Image analysis failed: {str(exc)}",
+        )
+
+    analysis_id = f"SS-{uuid4().hex[:10].upper()}"
+
+    analysis_document = {
+        "analysis_id": analysis_id,
+        "type": "image",
+        "filename": file.filename,
+        "timestamp": datetime.now(timezone.utc),
+        "risk_score": result["risk_score"],
+        "risk_level": result["risk_level"],
+        "category": result["category"],
+        "verdict": result["verdict"],
+        "confidence": result["confidence"],
+        "reasons": result["reasons"],
+        "detected_indicators": result["detected_indicators"],
+        "recommendation": result["recommendation"],
+        "extracted_text": result["extracted_text"],
+        "qr_codes": result["qr_codes"],
+        "extracted_urls": result["extracted_urls"],
+        "ocr_status": result["ocr_status"],
+        "qr_status": result["qr_status"],
+    }
+
+    save_analysis(analysis_document)
+
+    return ImageAnalysisResponse(
+        analysis_id=analysis_id,
+        filename=file.filename,
+        risk_score=result["risk_score"],
+        risk_level=result["risk_level"],
+        category=result["category"],
+        verdict=result["verdict"],
+        confidence=result["confidence"],
+        reasons=result["reasons"],
+        detected_indicators=result["detected_indicators"],
+        recommendation=result["recommendation"],
+        extracted_text=result["extracted_text"],
+        qr_codes=result["qr_codes"],
+        extracted_urls=result["extracted_urls"],
+        message_analysis=result["message_analysis"],
+        url_analyses=result["url_analyses"],
+        ocr_status=result["ocr_status"],
+        qr_status=result["qr_status"],
     )
 
 

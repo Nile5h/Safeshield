@@ -1,5 +1,1321 @@
 [
   {
+    "analysis_id": "SS-8FC2E0672D",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-22T20:43:05.370132+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-43520E3BC9",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-22T20:43:05.345799+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-148F894C0E",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-22T20:43:05.324883+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-1008EB9D86",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-22T20:43:05.285425+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-791A0CB39A",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-22T20:43:05.255506+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-B5ED1A5DDF",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-22T20:43:05.220577+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-A36BEFC9BA",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-22T20:43:05.195785+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-FAFBB601E6",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-22T20:43:05.164815+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-EEFD19E808",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-22T20:43:05.139108+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-984D6DD783",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-22T20:43:04.109247+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-796767E479",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-22T20:43:00.675536+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image."
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-963ACDCC4F",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-22T20:43:00.521250+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-AA8CB39B1D",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-22T20:42:55.261243+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-E7F8704888",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-22T20:38:23.408055+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-74E82C07D5",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-22T20:38:23.397905+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-3E5B1C87DD",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-22T20:38:23.391267+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-0A690305F9",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-22T20:38:23.381262+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-73C70B93DB",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-22T20:38:23.373959+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-109176B012",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-22T20:38:23.363756+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-649C1BC339",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-22T20:38:23.348680+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-672E2F0D00",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-22T20:38:23.342008+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-8014DA1518",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-22T20:38:23.331650+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-9288595D9A",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-22T20:38:22.991636+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-9E6CAA5689",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-22T20:38:21.956818+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image."
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-B1CF18B1AA",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-22T20:38:21.910471+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-FB962D40C5",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-22T20:38:16.693396+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-AF4E92661C",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-22T20:36:35.542091+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-7CAFFB3C1B",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-22T20:36:35.531438+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-B42BB6FC7A",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-22T20:36:35.520659+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-5624618CDA",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-22T20:36:35.513348+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-C4BECB24F1",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-22T20:36:35.503286+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-31FAAA44EA",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-22T20:36:35.496636+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-A2B94C154A",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-22T20:36:35.485044+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-1DA6140EAF",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-22T20:36:35.478058+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-F6F822C21B",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-22T20:36:35.468488+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-4FA268C209",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-22T20:36:35.063605+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-A7E28B9622",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-22T20:36:33.887578+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image."
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-748F89B8E2",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-22T20:36:33.833601+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-CC155A3FD2",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-22T20:36:28.231647+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-FD8DA68BDC",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-22T20:35:33.640559+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-EF4F29526A",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-22T20:35:28.570039+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-6DC2796220",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-22T20:35:23.485973+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-D8384113C4",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-22T20:35:18.437120+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-01BFC7D769",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-22T20:35:13.318504+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-5C4F6A566A",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-22T20:35:08.278168+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-3B5260F0AA",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-22T20:35:03.188180+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-E70B617252",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-22T20:34:58.095050+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-23489C5B94",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-22T20:34:52.968411+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-764E8D94D9",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-22T20:34:46.440907+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-F9AB523328",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-22T20:34:37.818176+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image."
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-407F8C11AE",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-22T20:34:32.274929+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
     "analysis_id": "SS-6D635E873E",
     "type": "apk",
     "filename": "clean.apk",

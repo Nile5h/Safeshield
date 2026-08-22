@@ -10,3 +10,9 @@ scikit-learn==1.8.0
 httpx==0.27.2
 requests
 beautifulsoup
+opencv-python
+pytesseract
+pyzbar
+pillow
+qrcode
+python-multipart

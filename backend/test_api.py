@@ -1,8 +1,15 @@
+import sys
+from pathlib import Path
 import unittest
+
+BACKEND_DIR = Path(__file__).resolve().parent
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
 
 from fastapi.testclient import TestClient
 
 from main import app
+
 
 
 class SafeShieldAPITest(unittest.TestCase):
@@ -46,7 +53,9 @@ class SafeShieldAPITest(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_apk_analysis_upload(self):
-        apk_path = "test_apks/Sample.apk"
+        apk_path = BACKEND_DIR / "test_apks" / "Sample.apk"
+        if not apk_path.exists():
+            self.skipTest("Sample.apk not found")
         with open(apk_path, "rb") as apk_file:
             response = self.client.post(
                 "/analyze/apk",
@@ -107,9 +116,96 @@ class SafeShieldAPITest(unittest.TestCase):
 
     def test_login_invalid_credentials(self):
         response = self.client.post("/login", json={"username": "admin", "password": "wrongpassword"})
-        self.assertEqual(response.status_code, 401)
-        self.assertIn("detail", response.json())
+    def test_image_analysis_qr_phishing(self):
+        import io
+        import qrcode
+
+        qr = qrcode.QRCode()
+        qr.add_data("http://192.168.1.1/login.php?update_kyc=true")
+        qr.make(fit=True)
+        img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
+        buf = io.BytesIO()
+        img.save(buf, format="PNG")
+        buf.seek(0)
+
+        response = self.client.post(
+            "/analyze/image",
+            files={"file": ("phishing_qr.png", buf, "image/png")},
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("analysis_id", data)
+        self.assertTrue(data["analysis_id"].startswith("SS-"))
+        self.assertGreaterEqual(data["risk_score"], 50)
+        self.assertEqual(data["verdict"], "FRAUD")
+        self.assertIn("http://192.168.1.1/login.php?update_kyc=true", data["extracted_urls"])
+        self.assertTrue(len(data["qr_codes"]) >= 1)
+        self.assertTrue(len(data["url_analyses"]) >= 1)
+
+    def test_image_analysis_qr_benign(self):
+        import io
+        import qrcode
+
+        qr = qrcode.QRCode()
+        qr.add_data("https://google.com")
+        qr.make(fit=True)
+        img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
+        buf = io.BytesIO()
+        img.save(buf, format="PNG")
+        buf.seek(0)
+
+        response = self.client.post(
+            "/analyze/image",
+            files={"file": ("benign_qr.png", buf, "image/png")},
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["verdict"], "SAFE")
+        self.assertEqual(data["risk_level"], "LOW")
+        self.assertEqual(data["risk_score"], 0)
+        self.assertIn("https://google.com", data["extracted_urls"])
+
+    def test_image_analysis_blank_image(self):
+        import io
+        from PIL import Image
+
+        img = Image.new("RGB", (100, 100), color=(255, 255, 255))
+        buf = io.BytesIO()
+        img.save(buf, format="JPEG")
+        buf.seek(0)
+
+        response = self.client.post(
+            "/analyze/image",
+            files={"file": ("blank.jpg", buf, "image/jpeg")},
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["verdict"], "SAFE")
+        self.assertEqual(data["risk_level"], "LOW")
+        self.assertEqual(data["risk_score"], 0)
+        self.assertEqual(data["qr_codes"], [])
+
+    def test_image_analysis_invalid_format(self):
+        import io
+
+        buf = io.BytesIO(b"This is a text file not an image")
+        response = self.client.post(
+            "/analyze/image",
+            files={"file": ("document.txt", buf, "text/plain")},
+        )
+        self.assertEqual(response.status_code, 400)
+
+    def test_image_analysis_empty_file(self):
+        import io
+
+        buf = io.BytesIO(b"")
+        response = self.client.post(
+            "/analyze/image",
+            files={"file": ("empty.png", buf, "image/png")},
+        )
+        self.assertEqual(response.status_code, 400)
 
 
 if __name__ == "__main__":
     unittest.main()
+

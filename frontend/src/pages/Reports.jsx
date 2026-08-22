@@ -176,6 +176,7 @@ function Reports({ onNavigate }) {
                   {[
                     { key: 'message', label: '📧 Message Scans', color: 'bar-blue' },
                     { key: 'url', label: '🌐 URL Scans', color: 'bar-cyan' },
+                    { key: 'image', label: '🖼️ Image Scans', color: 'bar-teal' },
                     { key: 'apk', label: '📦 APK File Scans', color: 'bar-purple' },
                   ].map(({ key, label, color }) => {
                     const count = stats.by_type?.[key] ?? 0
@@ -209,6 +210,9 @@ function Reports({ onNavigate }) {
                 </button>
                 <button className="action-btn" onClick={() => onNavigate('url')}>
                   🌐 Analyze URL
+                </button>
+                <button className="action-btn" onClick={() => onNavigate('image')}>
+                  🖼️ Analyze Image
                 </button>
                 <button className="action-btn" onClick={() => onNavigate('apk')}>
                   📦 Analyze APK

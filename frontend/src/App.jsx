@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import MessageScanner from './pages/MessageScanner'
 import URLScanner from './pages/URLScanner'
+import ImageScanner from './pages/ImageScanner'
 import ApkScanner from './pages/ApkScanner'
 import AnalysisHistory from './pages/AnalysisHistory'
 import Reports from './pages/Reports'
@@ -65,6 +66,7 @@ function App() {
       case 'dashboard':   return <Dashboard onNavigate={navigateTo} />
       case 'message':     return <MessageScanner onNavigate={navigateTo} />
       case 'url':         return <URLScanner onNavigate={navigateTo} />
+      case 'image':       return <ImageScanner onNavigate={navigateTo} />
       case 'apk':         return <ApkScanner onNavigate={navigateTo} />
       case 'history':     return <AnalysisHistory onNavigate={navigateTo} />
       case 'reports':     return <Reports onNavigate={navigateTo} />
@@ -142,7 +144,6 @@ function App() {
         <button
           className={`nav-btn ${currentPage === 'image' ? 'active' : ''}`}
           onClick={() => navigateTo('image')}
-          disabled
         >
           Image Scanner
         </button>

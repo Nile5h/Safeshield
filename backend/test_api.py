@@ -75,5 +75,27 @@ class SafeShieldAPITest(unittest.TestCase):
                 self.assertEqual(response.json()["category"], category)
 
 
+    def test_get_history(self):
+        response = self.client.get("/history")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIsInstance(data, list)
+        for item in data:
+            self.assertNotIn("message", item, "Plaintext message must NEVER be returned in history")
+            self.assertIn("analysis_id", item)
+            self.assertIn("type", item)
+            self.assertIn("risk_level", item)
+
+    def test_get_reports_stats(self):
+        response = self.client.get("/reports/stats")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("total_scans", data)
+        self.assertIn("verdicts", data)
+        self.assertIn("risk_levels", data)
+        self.assertIn("by_type", data)
+        self.assertIn("mongodb_connected", data)
+
+
 if __name__ == "__main__":
     unittest.main()

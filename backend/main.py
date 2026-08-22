@@ -257,6 +257,32 @@ async def analyze_apk_endpoint(file: UploadFile = File(...)):
                 status_code=400,
                 detail=result.get("error", "APK analysis failed."),
             )
+        
+        analysis_id = f"SS-{uuid4().hex[:10].upper()}"
+        verdict = result.get("verdict", "low_risk")
+        risk_level = "CRITICAL" if verdict == "dangerous" else ("HIGH" if verdict == "suspicious" else "LOW")
+        result["analysis_id"] = analysis_id
+        result["risk_level"] = risk_level
+
+        analysis_document = {
+            "analysis_id": analysis_id,
+            "type": "apk",
+            "filename": file.filename,
+            "app_name": result.get("app_name"),
+            "package_name": result.get("package_name"),
+            "sha256": result.get("sha256"),
+            "timestamp": datetime.now(timezone.utc),
+            "risk_score": result.get("risk_score", 0),
+            "risk_level": risk_level,
+            "verdict": verdict,
+            "permission_count": result.get("permission_count", 0),
+        }
+        try:
+            if analyses_collection is not None:
+                analyses_collection.insert_one(analysis_document)
+        except Exception:
+            pass
+
         return result
     finally:
         try:
@@ -264,6 +290,106 @@ async def analyze_apk_endpoint(file: UploadFile = File(...)):
             os.unlink(temp_path)
         except OSError:
             pass
+
+
+@app.get("/history")
+def get_history(limit: int = 100, scan_type: str | None = None) -> list[dict]:
+    if analyses_collection is None:
+        return []
+
+    try:
+        query = {}
+        if scan_type:
+            query["type"] = scan_type.lower()
+
+        cursor = analyses_collection.find(query, {"_id": 0}).sort("timestamp", -1).limit(limit)
+        history = []
+        for doc in cursor:
+            ts = doc.get("timestamp")
+            if isinstance(ts, datetime):
+                doc["timestamp"] = ts.isoformat()
+
+            # Security constraint: NEVER store or return message plaintext; SHA-256 hash only.
+            if doc.get("type") == "message":
+                doc.pop("message", None)
+                msg_hash = doc.get("message_hash", "")
+                doc["target"] = f"Hash: {msg_hash[:12]}..." if msg_hash else "Message Scan"
+            elif doc.get("type") == "url":
+                doc["target"] = doc.get("original_url", doc.get("normalized_url", "URL Scan"))
+            elif doc.get("type") == "apk":
+                doc["target"] = doc.get("app_name") or doc.get("filename") or doc.get("package_name") or "APK Scan"
+            else:
+                doc["target"] = "Unknown Scan"
+
+            history.append(doc)
+        return history
+    except Exception as error:
+        print(f"Error reading history from MongoDB: {error}")
+        return []
+
+
+@app.get("/reports/stats")
+def get_reports_stats() -> dict:
+    fallback_response = {
+        "total_scans": 0,
+        "verdicts": {"SAFE": 0, "FRAUD": 0, "SUSPICIOUS": 0},
+        "risk_levels": {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0},
+        "by_type": {"message": 0, "url": 0, "apk": 0},
+        "mongodb_connected": False,
+    }
+
+    if analyses_collection is None:
+        return fallback_response
+
+    try:
+        docs = list(analyses_collection.find({}, {"_id": 0}))
+        total_scans = len(docs)
+
+        verdicts = {"SAFE": 0, "FRAUD": 0, "SUSPICIOUS": 0}
+        risk_levels = {"CRITICAL": 0, "HIGH": 0, "MEDIUM": 0, "LOW": 0}
+        by_type = {"message": 0, "url": 0, "apk": 0}
+
+        for doc in docs:
+            stype = doc.get("type", "message")
+            if stype in by_type:
+                by_type[stype] += 1
+
+            rlevel = str(doc.get("risk_level", "LOW")).upper()
+            if rlevel in risk_levels:
+                risk_levels[rlevel] += 1
+            else:
+                risk_levels["LOW"] += 1
+
+            verdict = doc.get("verdict")
+            if verdict:
+                v_upper = str(verdict).upper()
+                if v_upper in ("SAFE", "LOW_RISK"):
+                    verdicts["SAFE"] += 1
+                elif v_upper in ("MALICIOUS", "DANGEROUS", "FRAUD"):
+                    verdicts["FRAUD"] += 1
+                elif v_upper in ("SUSPICIOUS", "MEDIUM"):
+                    verdicts["SUSPICIOUS"] += 1
+                else:
+                    verdicts["SAFE"] += 1
+            else:
+                if rlevel in ("CRITICAL", "HIGH"):
+                    verdicts["FRAUD"] += 1
+                elif rlevel == "MEDIUM":
+                    verdicts["SUSPICIOUS"] += 1
+                else:
+                    verdicts["SAFE"] += 1
+
+        return {
+            "total_scans": total_scans,
+            "verdicts": verdicts,
+            "risk_levels": risk_levels,
+            "by_type": by_type,
+            "mongodb_connected": True,
+        }
+    except Exception as error:
+        print(f"Error calculating stats from MongoDB: {error}")
+        return fallback_response
+
 
 if __name__ == "__main__":
     import uvicorn

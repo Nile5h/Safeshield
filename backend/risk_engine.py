@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from hashlib import sha256
+from functools import lru_cache
 from pathlib import Path
 
 import joblib
@@ -48,6 +49,7 @@ def _generate_recommendation(score: int, reasons: list[str]) -> str:
     return "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source."
 
 
+@lru_cache(maxsize=1)
 def _load_model():
     if not MODEL_FILE.exists():
         return None

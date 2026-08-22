@@ -56,4 +56,23 @@ export const analyzeApk = async (file) => {
   }
 }
 
+export const getHistory = async (scanType = null) => {
+  try {
+    const params = scanType ? { scan_type: scanType } : {}
+    const response = await api.get('/history', { params })
+    return response.data
+  } catch (error) {
+    throw error.response?.data || { detail: 'Failed to fetch history' }
+  }
+}
+
+export const getReportsStats = async () => {
+  try {
+    const response = await api.get('/reports/stats')
+    return response.data
+  } catch (error) {
+    throw error.response?.data || { detail: 'Failed to fetch report statistics' }
+  }
+}
+
 export default api

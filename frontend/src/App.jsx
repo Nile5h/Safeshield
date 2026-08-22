@@ -4,6 +4,8 @@ import Dashboard from './pages/Dashboard'
 import MessageScanner from './pages/MessageScanner'
 import URLScanner from './pages/URLScanner'
 import ApkScanner from './pages/ApkScanner'
+import AnalysisHistory from './pages/AnalysisHistory'
+import Reports from './pages/Reports'
 import { getHealth } from './api'
 
 function App() {
@@ -38,6 +40,10 @@ function App() {
         return <URLScanner onNavigate={setCurrentPage} />
       case 'apk':
         return <ApkScanner onNavigate={setCurrentPage} />
+      case 'history':
+        return <AnalysisHistory onNavigate={setCurrentPage} />
+      case 'reports':
+        return <Reports onNavigate={setCurrentPage} />
       default:
         return <Dashboard onNavigate={setCurrentPage} />
     }
@@ -110,14 +116,12 @@ function App() {
         <button
           className={`nav-btn ${currentPage === 'history' ? 'active' : ''}`}
           onClick={() => setCurrentPage('history')}
-          disabled
         >
           Analysis History
         </button>
         <button
           className={`nav-btn ${currentPage === 'reports' ? 'active' : ''}`}
           onClick={() => setCurrentPage('reports')}
-          disabled
         >
           Reports
         </button>

@@ -17,8 +17,18 @@ SPAM_FILE = BASE_DIR / "data" / "spam.csv"
 MODEL_FILE = ML_DIR / "models" / "message_model.joblib"
 
 
+LABEL_MAP = {
+    "0": "benign",
+    "1": "suspicious",
+    "ham": "benign",
+    "spam": "suspicious",
+    "benign": "benign",
+}
+
+
 def _normalize_label(value: object) -> str:
-    return str(value).strip().lower().replace(" ", "_")
+    val = str(value).strip().lower().replace(" ", "_")
+    return LABEL_MAP.get(val, val)
 
 
 def load_dataset() -> pd.DataFrame:
@@ -38,7 +48,7 @@ def load_dataset() -> pd.DataFrame:
 
     spam = pd.read_csv(SPAM_FILE, encoding="latin-1", usecols=[0, 1], names=["label", "text"], header=0)
     spam["text"] = spam["text"].fillna("").astype(str).str.normalize("NFKC").str.replace(r"\s+", " ", regex=True).str.strip()
-    spam["category"] = spam["label"].fillna("unknown").map({"ham": "benign", "spam": "spam"}).fillna("unknown")
+    spam["category"] = spam["label"].fillna("unknown").map(_normalize_label)
     spam = spam[["text", "category"]]
 
     combined = pd.concat([messages[["text", "category"]], spam], ignore_index=True)

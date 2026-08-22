@@ -78,8 +78,10 @@ def evaluate(dataset: pd.DataFrame) -> tuple[list[int], list[dict[str, object]]]
     """Run the analyzer and risk engine for every message in the dataset."""
     predictions: list[int] = []
     failures: list[dict[str, object]] = []
+    total_messages = len(dataset)
+    print(f"Evaluating {total_messages} messages...", flush=True)
 
-    for row in dataset.itertuples(index=False):
+    for index, row in enumerate(dataset.itertuples(index=False), start=1):
         indicators = analyze_message(row.text)
         analysis = evaluate_message_risk(indicators, row.text)
         predicted_label = 0 if analysis.risk_level == "LOW" else 1
@@ -99,15 +101,18 @@ def evaluate(dataset: pd.DataFrame) -> tuple[list[int], list[dict[str, object]]]
                 }
             )
 
+        if index == total_messages or index % 100 == 0:
+            print(f"Progress: {index}/{total_messages}", flush=True)
+
     return predictions, failures
 
 
 def main() -> None:
     dataset, dataset_path = load_dataset()
+    print(f"Dataset: {dataset_path}", flush=True)
     predictions, failures = evaluate(dataset)
     true_labels = dataset["true_label"].tolist()
 
-    print(f"Dataset: {dataset_path}")
     print(f"Messages evaluated: {len(true_labels)}")
     print(f"Accuracy: {accuracy_score(true_labels, predictions):.4f}")
     print(f"Precision: {precision_score(true_labels, predictions, zero_division=0):.4f}")

@@ -19,6 +19,8 @@ if MONGODB_URI:
 
 
 def test_database_connection():
+    if client is None:
+        return False
     try:
         client.admin.command("ping")
         return True

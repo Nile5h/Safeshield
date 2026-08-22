@@ -128,6 +128,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "https://safeshield-frontend.onrender.com",  # Your frontend Render URL
     ],
     allow_origin_regex=r"^chrome-extension://.*$",
     allow_credentials=True,

@@ -334,6 +334,13 @@ async def analyze_apk_endpoint(file: UploadFile = File(...)):
             "risk_level": risk_level,
             "verdict": verdict,
             "permission_count": result.get("permission_count", 0),
+            # ---- Advanced static analysis fields ----
+            "suspicious_permissions": result.get("suspicious_permissions", []),
+            "suspicious_apis": result.get("suspicious_apis", []),
+            "manifest_issues": result.get("manifest_issues", []),
+            "dangerous_combos": result.get("dangerous_combos", []),
+            "network_indicators": result.get("network_indicators", {}),
+            "certificate_info": result.get("certificate_info", {}),
         }
         save_analysis(analysis_document)
 

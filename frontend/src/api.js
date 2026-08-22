@@ -75,4 +75,13 @@ export const getReportsStats = async () => {
   }
 }
 
+export const loginUser = async (username, password) => {
+  try {
+    const response = await api.post('/login', { username, password })
+    return response.data
+  } catch (error) {
+    throw error.response?.data || { detail: 'Login failed. Please try again.' }
+  }
+}
+
 export default api

@@ -96,6 +96,20 @@ class SafeShieldAPITest(unittest.TestCase):
         self.assertIn("by_type", data)
         self.assertIn("mongodb_connected", data)
 
+    def test_login_success(self):
+        response = self.client.post("/login", json={"username": "admin", "password": "password123"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("access_token", data)
+        self.assertEqual(data["token_type"], "bearer")
+        self.assertEqual(data["username"], "admin")
+        self.assertTrue(data["access_token"].startswith("ss_token_"))
+
+    def test_login_invalid_credentials(self):
+        response = self.client.post("/login", json={"username": "admin", "password": "wrongpassword"})
+        self.assertEqual(response.status_code, 401)
+        self.assertIn("detail", response.json())
+
 
 if __name__ == "__main__":
     unittest.main()

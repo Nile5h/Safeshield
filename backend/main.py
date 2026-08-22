@@ -85,6 +85,32 @@ class URLAnalysisResponse(BaseModel):
     domain_valid: bool
 
 
+# ── Authentication models & demo credentials ──────────────────────────────────
+class LoginRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    username: str = Field(..., min_length=1, max_length=100)
+    password: str = Field(..., min_length=1, max_length=100)
+
+
+class LoginResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    access_token: str
+    token_type: str = "bearer"
+    username: str
+    role: str = "analyst"
+    message: str = "Authentication successful"
+
+
+# Hardcoded demo users (username -> password)
+_DEMO_USERS: dict[str, str] = {
+    "admin":   "password123",
+    "analyst": "safeshield2026",
+    "demo":    "demo123",
+}
+
+
 app = FastAPI(
     title="SafeShield Backend",
     version="1.0.0",
@@ -121,6 +147,30 @@ def health_check() -> dict[str, str]:
         "service": "SafeShield Backend",
         "version": "1.0.0",
     }
+
+
+@app.post("/login", response_model=LoginResponse)
+def login_endpoint(payload: LoginRequest) -> LoginResponse:
+    username = payload.username.strip()
+    password = payload.password.strip()
+
+    expected = _DEMO_USERS.get(username)
+    if not expected or expected != password:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid username or password.",
+        )
+
+    import secrets
+    token = f"ss_token_{secrets.token_hex(16)}"
+
+    return LoginResponse(
+        access_token=token,
+        token_type="bearer",
+        username=username,
+        role="admin" if username == "admin" else "analyst",
+        message="Authentication successful",
+    )
 
 
 @app.post("/analyze/message", response_model=MessageAnalysisResponse)

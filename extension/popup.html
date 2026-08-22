@@ -19,6 +19,21 @@
         <span class="privacy-pill">User-initiated analysis</span>
       </header>
 
+      <!-- ── URL Risk section (auto-scan result) ── -->
+      <section class="url-scan-panel" aria-live="polite">
+        <div class="scan-header">
+          <span class="section-label">Current Page Risk</span>
+          <span id="scan-status" class="scan-status-pill">Checking…</span>
+        </div>
+        <div class="scan-body">
+          <div class="scan-score-row">
+            <span id="scan-risk-label" class="risk-label low">LOW RISK</span>
+            <span id="scan-score" class="score-label">—</span>
+          </div>
+          <ul id="scan-reasons" class="reasons-list scan-reasons"></ul>
+        </div>
+      </section>
+
       <section class="hero-panel">
         <div class="status-row">
           <span class="status-dot"></span>
@@ -67,6 +82,53 @@
             <p class="section-label">Evidence Snapshot</p>
             <p id="evidence-summary" class="content-text">No evidence captured yet.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- ── CYBER-9: Session & Cookie Security ── -->
+      <section class="cookie-panel" aria-live="polite">
+        <div class="cookie-panel-header">
+          <span class="section-label">Session &amp; Cookie Security</span>
+          <span id="cyber9-badge" class="cyber9-badge cyber9-checking">Auditing…</span>
+        </div>
+
+        <!-- Tally row -->
+        <div class="cookie-tally" id="cookie-tally">
+          <div class="tally-cell">
+            <span id="tally-total" class="tally-num">—</span>
+            <span class="tally-lbl">Total</span>
+          </div>
+          <div class="tally-cell">
+            <span id="tally-secure" class="tally-num">—</span>
+            <span class="tally-lbl">Secure</span>
+          </div>
+          <div class="tally-cell">
+            <span id="tally-httponly" class="tally-num">—</span>
+            <span class="tally-lbl">HttpOnly</span>
+          </div>
+          <div class="tally-cell">
+            <span id="tally-trackers" class="tally-num">—</span>
+            <span class="tally-lbl">Trackers</span>
+          </div>
+        </div>
+
+        <!-- Session token table -->
+        <div class="cookie-table-wrap" id="cookie-table-wrap">
+          <table class="cookie-table" id="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie Name</th>
+                <th>HttpOnly</th>
+                <th>Secure</th>
+                <th>SameSite</th>
+                <th>Risk</th>
+              </tr>
+            </thead>
+            <tbody id="cookie-table-body">
+              <!-- populated by popup.js -->
+            </tbody>
+          </table>
+          <p id="cookie-empty-msg" class="cookie-empty-msg" hidden>No session-related cookies detected on this page.</p>
         </div>
       </section>
     </main>

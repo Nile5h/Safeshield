@@ -8,7 +8,7 @@ BACKEND_DIR = Path(__file__).resolve().parent
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, ConfigDict
 
@@ -170,7 +170,7 @@ def health_check() -> dict[str, str]:
 
 
 @app.post("/login", response_model=LoginResponse)
-def login_endpoint(payload: LoginRequest) -> LoginResponse:
+def login_endpoint(payload: LoginRequest, response: Response) -> LoginResponse:
     username = payload.username.strip()
     password = payload.password.strip()
 
@@ -183,6 +183,16 @@ def login_endpoint(payload: LoginRequest) -> LoginResponse:
 
     import secrets
     token = f"ss_token_{secrets.token_hex(16)}"
+
+    # ── CYBER-9: Set compliant HttpOnly + Secure + SameSite session cookie ──
+    response.set_cookie(
+        key="session_token",
+        value=token,
+        httponly=True,       # Prevents XSS-based cookie theft
+        secure=True,         # Cookie transmitted over HTTPS only
+        samesite="lax",      # Mitigates CSRF; allows top-level GET navigations
+        max_age=3600,        # 1-hour expiry
+    )
 
     return LoginResponse(
         access_token=token,

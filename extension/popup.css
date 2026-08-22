@@ -237,6 +237,183 @@ body {
   padding-top: 12px;
 }
 
+/* ── URL Auto-Scan Panel ──────────────────────────────────────────────────── */
+
+.url-scan-panel {
+  margin: 0 16px 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(11, 20, 28, 0.9);
+}
+
+.scan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.scan-status-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.pill-safe    { background: rgba(52, 211, 153, 0.15); color: var(--low);      }
+.pill-danger  { background: rgba(239, 68,  68, 0.18); color: var(--critical); }
+.pill-neutral { background: rgba(148, 163, 184, 0.12); color: var(--muted);   }
+
+.scan-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scan-score-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scan-reasons {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── Cookie & Session Security Panel (CYBER-9) ───────────────────────────── */
+
+.cookie-panel {
+  margin: 0 16px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(11, 20, 28, 0.9);
+  overflow: hidden;
+}
+
+.cookie-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cyber9-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.cyber9-checking { background: rgba(148, 163, 184, 0.12); color: var(--muted);    }
+.cyber9-pass     { background: rgba(52, 211, 153,  0.15); color: var(--low);      }
+.cyber9-fail     { background: rgba(239, 68,  68,  0.18); color: var(--critical); }
+.cyber9-na       { background: rgba(148, 163, 184, 0.10); color: var(--muted);    }
+
+/* Tally row */
+.cookie-tally {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tally-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px;
+  border-right: 1px solid var(--line);
+}
+
+.tally-cell:last-child { border-right: none; }
+
+.tally-num {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+  line-height: 1;
+}
+
+.tally-lbl {
+  font-size: 0.62rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
+
+/* Cookie table */
+.cookie-table-wrap {
+  padding: 10px 14px 14px;
+  overflow-x: auto;
+}
+
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.74rem;
+  color: var(--text);
+}
+
+.cookie-table th {
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 6px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cookie-table td {
+  padding: 7px 6px;
+  border-bottom: 1px solid rgba(123, 171, 255, 0.08);
+  vertical-align: middle;
+}
+
+.cookie-table tbody tr:last-child td { border-bottom: none; }
+
+.cookie-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 0.72rem;
+}
+
+.flag-ok   { color: var(--low);    font-weight: 700; text-align: center; }
+.flag-warn { color: var(--medium); font-weight: 700; text-align: center; }
+
+.risk-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.risk-chip.flag-ok     { background: rgba(52, 211, 153, 0.15); color: var(--low);      }
+.risk-chip.flag-warn   { background: rgba(251, 191,  36, 0.15); color: var(--medium);  }
+.risk-chip.flag-danger { background: rgba(239, 68,   68, 0.18); color: var(--critical); }
+
+.cookie-empty-msg {
+  padding: 10px 0 4px;
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 @media (max-width: 380px) {
   body {
     padding: 10px;
@@ -248,5 +425,9 @@ body {
 
   .action-btn.primary {
     grid-column: auto;
+  }
+
+  .cookie-tally {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

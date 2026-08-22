@@ -9,6 +9,7 @@ static ML + rule heuristics always run first and the result is always valid.
 from __future__ import annotations
 
 import re
+import time
 
 # ── Constants ──────────────────────────────────────────────────────────────────
 FETCH_TIMEOUT = 3           # seconds total (connect + read)
@@ -58,6 +59,7 @@ def _empty_result() -> dict:
         "server": "",
         "html": "",
         "response_url": "",
+        "response_time_ms": 0,
         "suspicious_content_type": False,
         "error": None,
     }
@@ -74,10 +76,12 @@ def fetch_page(url: str) -> dict:
         server (str)                   – Server header, if present
         html (str)                     – body (truncated to MAX_BODY_BYTES)
         response_url (str)             – final URL after redirects
+        response_time_ms (int)         – round-trip duration in milliseconds
         suspicious_content_type (bool) – True when Content-Type signals a payload
         error (str | None)             – sanitised error message if reachable=False
     """
     result = _empty_result()
+    t_start = time.perf_counter()
     try:
         import requests  # local import keeps module usable without requests installed
 
@@ -90,6 +94,7 @@ def fetch_page(url: str) -> dict:
             verify=True,           # enforce TLS certificate validation
         )
 
+        result["response_time_ms"] = round((time.perf_counter() - t_start) * 1000)
         result["reachable"] = True
         result["status_code"] = resp.status_code
         result["response_url"] = resp.url
@@ -115,8 +120,10 @@ def fetch_page(url: str) -> dict:
             result["html"] = body.decode("utf-8", errors="replace")
 
     except ImportError:
+        result["response_time_ms"] = round((time.perf_counter() - t_start) * 1000)
         result["error"] = "requests library not available"
     except Exception as exc:
+        result["response_time_ms"] = round((time.perf_counter() - t_start) * 1000)
         result["error"] = _sanitise_error(str(exc))
 
     return result

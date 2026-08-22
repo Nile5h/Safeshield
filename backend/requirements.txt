@@ -8,3 +8,5 @@ joblib==1.4.2
 pandas==2.2.3
 scikit-learn==1.8.0
 httpx==0.27.2
+requests
+beautifulsoup

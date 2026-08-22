@@ -8,19 +8,16 @@ url_analyzer.py – SafeShield URL risk analysis pipeline.
   3. ML model scoring                 (url_model_calibrated.pkl)
   4. Static score fusion              (confidence-weighted blend)
   5. Live page fetch                  (live_inspector.fetch_page  ≤ 3 s wall-clock)
-  6. HTML heuristics on live body     (url_rules.inspect_html_content)
+  6. HTML heuristics on live body     (url_rules.inspect_html_content with BeautifulSoup)
   7. Live score fusion + FRAUD gate   (additive penalty, force_fraud override)
 
-The URLRiskAnalysis dataclass and all its field names are unchanged so the
-FastAPI contract (URLAnalysisResponse in main.py) is never broken.
-
-NOTE: lru_cache is intentionally absent — live results are time-sensitive
-and must not be served stale.
+The URLRiskAnalysis dataclass preserves all original fields and adds live_inspection
+telemetry so the frontend UI can display real-time inspection statistics.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 import sys
 
@@ -44,7 +41,7 @@ from analyzer.live_inspector import fetch_page
 _EXPECTED_FEATURE_COUNT: int | None = None
 
 
-# ── Return schema (unchanged — FastAPI contract preserved) ────────────────────
+# ── Return schema (FastAPI contract preserved) ────────────────────────────────
 @dataclass(frozen=True)
 class URLRiskAnalysis:
     normalized_url: str
@@ -60,6 +57,7 @@ class URLRiskAnalysis:
     model_confidence: int
     rule_confidence: int
     domain_valid: bool
+    live_inspection: dict = field(default_factory=dict)
 
 
 # ── ML model (lazy singleton) ─────────────────────────────────────────────────
@@ -158,11 +156,7 @@ def _confidence_weighted_blend(
     model_confidence_pct: int,
     model_unavailable: bool = False,
 ) -> float:
-    """Blend ML probability (60% weight) and rule score (40% weight) smoothly.
-
-    - If model is unavailable: 100% rules.
-    - Otherwise, baseline 60% ML / 40% Rules, dynamically scaling with ML confidence.
-    """
+    """Blend ML probability (60% weight) and rule score (40% weight) smoothly."""
     if model_unavailable or model_confidence_pct == 0:
         return min(rule_score, 1.0)
 
@@ -175,18 +169,34 @@ def _confidence_weighted_blend(
 
 # ── Main analysis entry-point ─────────────────────────────────────────────────
 def analyze_url(url: str) -> URLRiskAnalysis:
-    """Analyze a URL for risk using a 7-step static + live inspection pipeline.
-
-    lru_cache is intentionally removed: live page content changes over time
-    and stale cached results would produce incorrect verdicts.
-    """
+    """Analyze a URL for risk using a 7-step static + live inspection pipeline."""
     info = normalize_url(url)
     normalized_url = info.get("normalized_url", "")
     netloc = info.get("netloc", "")
     scheme = info.get("scheme", "")
 
+    # Telemetry data collected during live inspection
+    live_telemetry: dict = {
+        "attempted": False,
+        "reachable": False,
+        "status_code": None,
+        "content_type": "",
+        "server": "",
+        "response_time_ms": 0,
+        "page_title": "",
+        "forms_count": 0,
+        "password_inputs_count": 0,
+        "iframes_count": 0,
+        "hidden_iframes_count": 0,
+        "links_checked_count": 0,
+        "executable_links_count": 0,
+        "live_threats": [],
+        "fallback_reason": None,
+    }
+
     # ── Step 1: Whitelist fast-path ────────────────────────────────────────────
     if _is_whitelisted(netloc):
+        live_telemetry["fallback_reason"] = "Domain is in trusted whitelist (instant bypass)"
         return URLRiskAnalysis(
             normalized_url=normalized_url,
             risk_score=0,
@@ -201,6 +211,7 @@ def analyze_url(url: str) -> URLRiskAnalysis:
             model_confidence=99,
             rule_confidence=99,
             domain_valid=True,
+            live_inspection=live_telemetry,
         )
 
     # ── Step 2: Static rule heuristics ────────────────────────────────────────
@@ -238,9 +249,18 @@ def analyze_url(url: str) -> URLRiskAnalysis:
     # Only attempt the live fetch when the domain is syntactically valid and
     # the scheme is http or https (skip data:, ftp:, javascript:, etc.)
     if domain_valid and scheme in ("http", "https"):
+        live_telemetry["attempted"] = True
         try:
             page = fetch_page(normalized_url)
             live_reachable = page.get("reachable", False)
+            live_telemetry["reachable"] = live_reachable
+            live_telemetry["status_code"] = page.get("status_code")
+            live_telemetry["content_type"] = page.get("content_type", "")
+            live_telemetry["server"] = page.get("server", "")
+            live_telemetry["response_time_ms"] = page.get("response_time_ms", 0)
+
+            if not live_reachable:
+                live_telemetry["fallback_reason"] = page.get("error") or "Host unreachable or request timed out"
 
             if live_reachable:
                 # 5a. Malicious Content-Type header (payload served directly)
@@ -256,8 +276,8 @@ def analyze_url(url: str) -> URLRiskAnalysis:
                 # 5b. HTML heuristics — BeautifulSoup parsing
                 html_body = page.get("html", "")
                 if html_body:
-                    h_reasons, h_indicators, h_penalty, h_force = inspect_html_content(
-                        html_body, info
+                    h_reasons, h_indicators, h_penalty, h_force, h_details = inspect_html_content(
+                        html_body, info, return_details=True
                     )
                     live_reasons.extend(h_reasons)
                     live_indicators.extend(h_indicators)
@@ -265,9 +285,21 @@ def analyze_url(url: str) -> URLRiskAnalysis:
                     if h_force:
                         force_fraud = True
 
-        except Exception:
-            # Any fetch or parse failure falls back silently to static analysis
+                    live_telemetry["page_title"] = h_details.get("title", "")
+                    live_telemetry["forms_count"] = h_details.get("forms_count", 0)
+                    live_telemetry["password_inputs_count"] = h_details.get("password_inputs_count", 0)
+                    live_telemetry["iframes_count"] = h_details.get("iframes_count", 0)
+                    live_telemetry["hidden_iframes_count"] = h_details.get("hidden_iframes_count", 0)
+                    live_telemetry["links_checked_count"] = h_details.get("links_checked_count", 0)
+                    live_telemetry["executable_links_count"] = h_details.get("executable_links_count", 0)
+
+            live_telemetry["live_threats"] = live_indicators
+
+        except Exception as exc:
             live_reachable = False
+            live_telemetry["fallback_reason"] = str(exc)
+    else:
+        live_telemetry["fallback_reason"] = "Invalid domain or unsupported scheme"
 
     # ── Step 6: Fuse live findings into score ──────────────────────────────────
     if live_reachable and live_extra_penalty > 0:
@@ -329,4 +361,5 @@ def analyze_url(url: str) -> URLRiskAnalysis:
         model_confidence=model_confidence,
         rule_confidence=rule_confidence,
         domain_valid=domain_valid,
+        live_inspection=live_telemetry,
     )

@@ -49,9 +49,14 @@ function Reports({ onNavigate }) {
         </div>
       )}
 
-      {stats && !stats.mongodb_connected && (
+      {stats && !stats.mongodb_connected && stats.total_scans > 0 && (
+        <div className="info-banner" style={{ background: 'rgba(99, 102, 241, 0.12)', border: '1px solid rgba(99, 102, 241, 0.3)', color: '#a5b4fc', padding: '0.65rem 1rem', borderRadius: '0.5rem', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+          ℹ️ Local Persistence Mode: Scans and reports are stored locally. Connect MongoDB via <code>.env</code> for cloud sync.
+        </div>
+      )}
+      {stats && stats.total_scans === 0 && (
         <div className="warning-banner">
-          ⚠️ MongoDB is offline or MONGODB_URI is not set. Database analytics are in fallback mode (0 active records).
+          ℹ️ No scans recorded yet. Perform scans using Message Scanner, URL Scanner, or APK Scanner to see live reports.
         </div>
       )}
 

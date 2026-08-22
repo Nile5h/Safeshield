@@ -1,11 +1,33 @@
+"""
+url_analyzer.py – SafeShield URL risk analysis pipeline.
+
+7-step pipeline (all steps preserve the URLRiskAnalysis schema / FastAPI contract):
+
+  1. Whitelist fast-path              (instant — 0 ms)
+  2. Static rule heuristics           (url_rules.rule_check)
+  3. ML model scoring                 (url_model_calibrated.pkl)
+  4. Static score fusion              (confidence-weighted blend)
+  5. Live page fetch                  (live_inspector.fetch_page  ≤ 3 s wall-clock)
+  6. HTML heuristics on live body     (url_rules.inspect_html_content)
+  7. Live score fusion + FRAUD gate   (additive penalty, force_fraud override)
+
+The URLRiskAnalysis dataclass and all its field names are unchanged so the
+FastAPI contract (URLAnalysisResponse in main.py) is never broken.
+
+NOTE: lru_cache is intentionally absent — live results are time-sensitive
+and must not be served stale.
+"""
+
+from __future__ import annotations
+
 from dataclasses import dataclass
-from functools import lru_cache
 from pathlib import Path
 import sys
 
 import joblib
 import pandas as pd
 
+# ── Path setup ─────────────────────────────────────────────────────────────────
 sys.path.insert(0, str(Path(__file__).parent))
 
 PROJECT_DIR = Path(__file__).resolve().parents[2]
@@ -16,11 +38,13 @@ if str(URL_CHECKER_DIR) not in sys.path:
 
 from dataset.utils.url_features import extract_url_features
 from dataset.utils.url_normalize import normalize_url
-from dataset.utils.url_rules import rule_check
+from dataset.utils.url_rules import rule_check, inspect_html_content
+from analyzer.live_inspector import fetch_page
 
 _EXPECTED_FEATURE_COUNT: int | None = None
 
 
+# ── Return schema (unchanged — FastAPI contract preserved) ────────────────────
 @dataclass(frozen=True)
 class URLRiskAnalysis:
     normalized_url: str
@@ -38,6 +62,7 @@ class URLRiskAnalysis:
     domain_valid: bool
 
 
+# ── ML model (lazy singleton) ─────────────────────────────────────────────────
 _model = None
 _model_loaded = False
 
@@ -88,7 +113,6 @@ def _align_features(features: list, model) -> list:
     feature_names = getattr(model, "feature_names_in_", None)
     if feature_names is None:
         return features
-
     expected = len(feature_names)
     current = len(features)
     if current == expected:
@@ -99,7 +123,7 @@ def _align_features(features: list, model) -> list:
 
 
 def _model_score(model, features: list) -> tuple[float, str, int]:
-    """Run the ML model and return (fraud_probability, prediction_label, confidence_pct)."""
+    """Run the ML model; return (fraud_probability, prediction_label, confidence_pct)."""
     if model is None:
         return 0.0, "unavailable", 0
     try:
@@ -137,12 +161,11 @@ def _confidence_weighted_blend(
     """Blend ML probability (60% weight) and rule score (40% weight) smoothly.
 
     - If model is unavailable: 100% rules.
-    - Otherwise, baseline is 60% ML / 40% Rules, dynamically scaling with ML confidence.
+    - Otherwise, baseline 60% ML / 40% Rules, dynamically scaling with ML confidence.
     """
     if model_unavailable or model_confidence_pct == 0:
         return min(rule_score, 1.0)
 
-    # 60/40 baseline dynamic scaling based on confidence
     ml_weight = 0.50 + (model_confidence_pct / 100.0) * 0.30
     ml_weight = max(0.50, min(0.80, ml_weight))
     rule_weight = 1.0 - ml_weight
@@ -150,14 +173,19 @@ def _confidence_weighted_blend(
     return min(combined, 1.0)
 
 
-@lru_cache(maxsize=4096)
+# ── Main analysis entry-point ─────────────────────────────────────────────────
 def analyze_url(url: str) -> URLRiskAnalysis:
-    """Analyze a URL for risk, returning a frozen, cached URLRiskAnalysis object."""
+    """Analyze a URL for risk using a 7-step static + live inspection pipeline.
+
+    lru_cache is intentionally removed: live page content changes over time
+    and stale cached results would produce incorrect verdicts.
+    """
     info = normalize_url(url)
     normalized_url = info.get("normalized_url", "")
     netloc = info.get("netloc", "")
+    scheme = info.get("scheme", "")
 
-    # Fast-path for trusted whitelist domains (0ms response)
+    # ── Step 1: Whitelist fast-path ────────────────────────────────────────────
     if _is_whitelisted(netloc):
         return URLRiskAnalysis(
             normalized_url=normalized_url,
@@ -175,48 +203,106 @@ def analyze_url(url: str) -> URLRiskAnalysis:
             domain_valid=True,
         )
 
+    # ── Step 2: Static rule heuristics ────────────────────────────────────────
     rule_result = rule_check(info)
-    suspicious = rule_result[0]
-    reasons = rule_result[1]
-    domain_valid = rule_result[2]
-    unusual_findings = rule_result[3]
-    rule_score = rule_result[4] if len(rule_result) > 4 else 0.0
+    suspicious: bool = rule_result[0]
+    reasons: list[str] = list(rule_result[1])
+    domain_valid: bool = rule_result[2]
+    unusual_findings: list[str] = rule_result[3]
+    rule_score: float = rule_result[4] if len(rule_result) > 4 else 0.0
 
+    # ── Step 3: ML model scoring ───────────────────────────────────────────────
     features = extract_url_features(normalized_url)
     model_probability, model_prediction, model_confidence = _model_score(
         _load_model(), features
     )
 
+    # ── Step 4: Static score fusion ────────────────────────────────────────────
     model_unavailable = model_prediction == "unavailable"
     combined_probability = _confidence_weighted_blend(
         model_probability, rule_score, model_confidence,
         model_unavailable=model_unavailable,
     )
-
     score = round(combined_probability * 100)
 
     if model_unavailable and not suspicious:
         score = min(score, 24)
 
-    indicators = list(dict.fromkeys(unusual_findings + reasons))
+    # ── Step 5: Live page fetch (≤ 3 s) ───────────────────────────────────────
+    live_reasons: list[str] = []
+    live_indicators: list[str] = []
+    live_extra_penalty: float = 0.0
+    force_fraud: bool = False
+    live_reachable: bool = False
+
+    # Only attempt the live fetch when the domain is syntactically valid and
+    # the scheme is http or https (skip data:, ftp:, javascript:, etc.)
+    if domain_valid and scheme in ("http", "https"):
+        try:
+            page = fetch_page(normalized_url)
+            live_reachable = page.get("reachable", False)
+
+            if live_reachable:
+                # 5a. Malicious Content-Type header (payload served directly)
+                if page.get("suspicious_content_type"):
+                    ct = page.get("content_type", "")
+                    live_reasons.append(
+                        f"Server returned a malicious Content-Type: '{ct}'"
+                    )
+                    live_indicators.append("malicious_content_type")
+                    live_extra_penalty += 0.45
+                    force_fraud = True
+
+                # 5b. HTML heuristics — BeautifulSoup parsing
+                html_body = page.get("html", "")
+                if html_body:
+                    h_reasons, h_indicators, h_penalty, h_force = inspect_html_content(
+                        html_body, info
+                    )
+                    live_reasons.extend(h_reasons)
+                    live_indicators.extend(h_indicators)
+                    live_extra_penalty += h_penalty
+                    if h_force:
+                        force_fraud = True
+
+        except Exception:
+            # Any fetch or parse failure falls back silently to static analysis
+            live_reachable = False
+
+    # ── Step 6: Fuse live findings into score ──────────────────────────────────
+    if live_reachable and live_extra_penalty > 0:
+        live_score_boost = round(live_extra_penalty * 60)
+        score = min(score + live_score_boost, 100)
+
+    # Force CRITICAL threshold (≥ 75) for confirmed credential theft or drive-by
+    if force_fraud:
+        score = max(score, 75)
+
+    # ── Step 7: Build the final result ────────────────────────────────────────
+    all_reasons = list(dict.fromkeys(reasons + live_reasons))
+    indicators = list(dict.fromkeys(unusual_findings + reasons + live_indicators))
 
     if not domain_valid:
         category = "invalid_url"
-    elif any(
-        "download" in r.lower() or "extension" in r.lower() for r in reasons
-    ):
+    elif "credential_harvesting" in live_indicators:
+        category = "credential_harvesting"
+    elif "drive_by_download_risk" in live_indicators:
+        category = "drive_by_download"
+    elif "malicious_content_type" in live_indicators:
         category = "malicious_download"
-    elif suspicious:
+    elif any("download" in r.lower() or "extension" in r.lower() for r in reasons):
+        category = "malicious_download"
+    elif suspicious or (live_reachable and len(live_reasons) > 0):
         category = "phishing"
     else:
         category = "benign"
 
-    verdict = "FRAUD" if score >= 50 else "SAFE"
+    verdict = "FRAUD" if (score >= 50 or force_fraud) else "SAFE"
 
     confidence = (
         model_confidence
         if model_prediction != "unavailable"
-        else min(100, 45 + len(reasons) * 10)
+        else min(100, 45 + len(all_reasons) * 10)
     )
 
     recommendation = (
@@ -236,7 +322,7 @@ def analyze_url(url: str) -> URLRiskAnalysis:
         category=category,
         verdict=verdict,
         confidence=confidence,
-        reasons=reasons,
+        reasons=all_reasons,
         detected_indicators=indicators,
         recommendation=recommendation,
         model_prediction=model_prediction,

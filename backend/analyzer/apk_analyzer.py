@@ -320,51 +320,43 @@ def analyze_apk(file_path: str):
         # RESULT
         # ----------------------------------------------------
 
+        component_counts = {
+            "activities": len(activities),
+            "services": len(services),
+            "receivers": len(receivers),
+            "providers": len(providers),
+        }
+
         return {
 
             "success": True,
-
+            "filename": path.name,
             "file_name": path.name,
-
             "file_size_mb": file_size_mb,
-
             "sha256": sha256,
-
             "package_name": package_name,
-
             "app_name": app_name,
-
             "version_name": version_name,
-
             "version_code": version_code,
-
             "permissions": permissions,
-
             "permission_count": len(permissions),
-
-            "suspicious_permissions":
-                suspicious_permissions,
-
-            "api_findings":
-                api_findings,
-
-            "activities_count":
-                len(activities),
-
-            "services_count":
-                len(services),
-
-            "receivers_count":
-                len(receivers),
-
-            "providers_count":
-                len(providers),
-
-            "risk_score":
-                risk_score,
-
-            "verdict":
-                verdict
+            "suspicious_permissions": suspicious_permissions,
+            "suspicious_apis": [
+                {
+                    "indicator": item["indicator"],
+                    "risk_points": item["risk_points"],
+                    "description": item["description"],
+                }
+                for item in api_findings
+            ],
+            "api_findings": api_findings,
+            "component_counts": component_counts,
+            "activities_count": len(activities),
+            "services_count": len(services),
+            "receivers_count": len(receivers),
+            "providers_count": len(providers),
+            "risk_score": risk_score,
+            "verdict": verdict,
         }
 
     except Exception as e:

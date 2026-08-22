@@ -302,7 +302,19 @@ async def analyze_apk_endpoint(file: UploadFile = File(...)):
                 status_code=400,
                 detail=result.get("error", "APK analysis failed."),
             )
-        
+
+        result["filename"] = file.filename
+        result["file_name"] = file.filename
+        if "component_counts" not in result:
+            result["component_counts"] = {
+                "activities": result.get("activities_count", 0),
+                "services": result.get("services_count", 0),
+                "receivers": result.get("receivers_count", 0),
+                "providers": result.get("providers_count", 0),
+            }
+        if "suspicious_apis" not in result and "api_findings" in result:
+            result["suspicious_apis"] = result["api_findings"]
+
         analysis_id = f"SS-{uuid4().hex[:10].upper()}"
         verdict = result.get("verdict", "low_risk")
         risk_level = "CRITICAL" if verdict == "dangerous" else ("HIGH" if verdict == "suspicious" else "LOW")

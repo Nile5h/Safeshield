@@ -140,10 +140,13 @@ async function scanAndGuard(tabId, url) {
   if (isDangerous) {
     setBadgeDanger(tabId);
 
+    const breakdown = result.scoring_breakdown || {};
     const params = new URLSearchParams({
       url,
       score: String(risk_score),
       reasons: reasons.join('||'),
+      tier: breakdown.tier_label || (verdict === 'FRAUD' ? 'TIER 1: LIVE DYNAMIC' : 'TIER 2: STATIC FALLBACK'),
+      summary: breakdown.summary || '',
     });
 
     chrome.tabs.update(tabId, {

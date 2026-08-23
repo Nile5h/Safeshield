@@ -1,5 +1,4297 @@
 [
   {
+    "analysis_id": "SS-92CC44BFBC",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-23T00:36:10.970859+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-4A54C4A264",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fpage%2Fhome",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fpage%2Fhome",
+    "timestamp": "2026-08-23T00:36:01.970943+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: login, win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: login, win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 686,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-8B46623281",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-23T00:35:59.753526+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 733,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-FB04E7DB6C",
+    "type": "url",
+    "original_url": "https://anikoto.cz/home",
+    "normalized_url": "https://anikoto.cz/home",
+    "timestamp": "2026-08-23T00:35:27.187356+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 644,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-29377ACF6A",
+    "type": "url",
+    "original_url": "https://anikoto.cz/home",
+    "normalized_url": "https://anikoto.cz/home",
+    "timestamp": "2026-08-23T00:35:23.048768+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 691,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-1C4BBF52AE",
+    "type": "url",
+    "original_url": "https://anikoto.cz/home",
+    "normalized_url": "https://anikoto.cz/home",
+    "timestamp": "2026-08-23T00:35:22.798413+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 594,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-7CB2BF9AAE",
+    "type": "url",
+    "original_url": "https://anikoto.cz/watch/hunter-x-hunter-tjlki/ep-83",
+    "normalized_url": "https://anikoto.cz/watch/hunter-x-hunter-tjlki/ep-83",
+    "timestamp": "2026-08-23T00:35:10.522228+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 613,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-7FB7CDC289",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-23T00:34:34.155422+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-75161EE3B0",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-23T00:34:34.143785+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-4EAF234781",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-23T00:34:34.132563+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-E3CA96DEA3",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-23T00:34:34.121030+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-1E654AFC52",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-23T00:34:34.109163+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-398F62717B",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-23T00:34:34.097429+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-3741A5BE6E",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-23T00:34:34.084772+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-33359DBE1E",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-23T00:34:34.072669+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-64B5470B02",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-23T00:34:34.060202+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-D1A9C348AD",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-23T00:34:33.746118+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Evaluation Source: Tier 2 - Static Heuristics (60%) & ML Model (40%) Fallback (Live inspection unavailable)",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Scoring Weightage: Dynamic Heuristic Verifications (0% - Fallback) | Static Heuristics (55%) | ML Model (45%)",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-24500A6803",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-23T00:34:33.640472+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: https://google.com] Evaluation Source: Trusted Domain Allowlist Fast-Path",
+      "[URL: https://google.com] Verified legitimate organization domain: Verified legitimate organization domain (Google)",
+      "[URL: https://google.com] Scoring Weightage: Allowlist Fast-Path (100% Instant Match Bypass) | Dynamic Heuristics (0%) | Static Rules (0%) | ML (0%)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-FA5C0E4AB9",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-23T00:34:33.578073+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-E31C404B81",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-23T00:34:28.004006+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-FC1E7722EA",
+    "type": "url",
+    "original_url": "https://anikoto.cz/watch/hunter-x-hunter-tjlki/ep-83",
+    "normalized_url": "https://anikoto.cz/watch/hunter-x-hunter-tjlki/ep-83",
+    "timestamp": "2026-08-23T00:30:07.501170+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 859,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-ED7D4A364C",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-23T00:29:37.742380+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-4A8DE2B139",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-23T00:29:37.724663+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-3B490E7256",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-23T00:29:37.710354+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-46D06C3D54",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-23T00:29:37.697321+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-3DEE2548AE",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-23T00:29:37.684305+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-8545156BFB",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-23T00:29:37.669382+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-D1CCA9652B",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-23T00:29:37.656045+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-B23CCB7AF9",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-23T00:29:37.640425+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-4FA0360468",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-23T00:29:37.627810+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-4A7E78BF46",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-23T00:29:37.285127+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Evaluation Source: Tier 2 - Static Heuristics (60%) & ML Model (40%) Fallback (Live inspection unavailable)",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Scoring Weightage: Dynamic Heuristic Verifications (0% - Fallback) | Static Heuristics (55%) | ML Model (45%)",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-6851EC9F7F",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-23T00:29:37.145536+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: https://google.com] Evaluation Source: Trusted Domain Allowlist Fast-Path",
+      "[URL: https://google.com] Verified legitimate organization domain: Verified legitimate organization domain (Google)",
+      "[URL: https://google.com] Scoring Weightage: Allowlist Fast-Path (100% Instant Match Bypass) | Dynamic Heuristics (0%) | Static Rules (0%) | ML (0%)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-4090606F3B",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-23T00:29:37.088834+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-7794C0A9BF",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-23T00:29:31.613393+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-8AA631FA0D",
+    "type": "url",
+    "original_url": "https://filmyfly.com",
+    "normalized_url": "https://filmyfly.com",
+    "timestamp": "2026-08-23T00:25:28.861428+00:00",
+    "risk_score": 33,
+    "risk_level": "MEDIUM",
+    "category": "phishing",
+    "verdict": "SAFE",
+    "confidence": 80,
+    "reasons": [
+      "Page title mentions brand 'google' but domain does not match"
+    ],
+    "detected_indicators": [
+      "brand_title_mismatch"
+    ],
+    "recommendation": "No major suspicious indicators detected. Continue only if you recognise the website and expected this link.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 429,
+      "content_type": "text/html",
+      "server": "scaffolding on HTTPServer2",
+      "response_time_ms": 2561,
+      "page_title": "https://www.google.com/search?q=site%3afilmyfly.farm",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 3,
+      "executable_links_count": 0,
+      "live_threats": [
+        "brand_title_mismatch"
+      ],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-26605D006B",
+    "type": "image",
+    "filename": "WhatsApp Image 2026-08-23 at 4.32.52 AM (2).jpeg",
+    "timestamp": "2026-08-23T00:24:08.272864+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-A37621F262",
+    "type": "url",
+    "original_url": "https://anikoto.cz/watch/hunter-x-hunter-tjlki/ep-83",
+    "normalized_url": "https://anikoto.cz/watch/hunter-x-hunter-tjlki/ep-83",
+    "timestamp": "2026-08-23T00:23:26.752822+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 804,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-EDC2DA8381",
+    "type": "url",
+    "original_url": "https://letsupgrade.in/login?r=%2Fmy-programs%2FEDSAJAN125",
+    "normalized_url": "https://letsupgrade.in/login?r=%2Fmy-programs%2FEDSAJAN125",
+    "timestamp": "2026-08-23T00:23:10.020323+00:00",
+    "risk_score": 81,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [
+      "Suspicious keyword(s) found: login"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: login"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "openresty/1.25.3.2",
+      "response_time_ms": 834,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-3D5909CE00",
+    "type": "url",
+    "original_url": "https://letsupgrade.in/login?r=%2Fmy-programs%2FEDSAJAN125",
+    "normalized_url": "https://letsupgrade.in/login?r=%2Fmy-programs%2FEDSAJAN125",
+    "timestamp": "2026-08-23T00:23:09.102902+00:00",
+    "risk_score": 81,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [
+      "Suspicious keyword(s) found: login"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: login"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "openresty/1.25.3.2",
+      "response_time_ms": 787,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-5C4BFF9429",
+    "type": "url",
+    "original_url": "https://letsupgrade.in/login?r=%2Fmy-programs%2FEDSAJAN125",
+    "normalized_url": "https://letsupgrade.in/login?r=%2Fmy-programs%2FEDSAJAN125",
+    "timestamp": "2026-08-23T00:23:00.494013+00:00",
+    "risk_score": 81,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [
+      "Suspicious keyword(s) found: login"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: login"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "openresty/1.25.3.2",
+      "response_time_ms": 932,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-356E0F2E18",
+    "type": "url",
+    "original_url": "https://letsupgrade.in/my-programs/EDSAJAN125",
+    "normalized_url": "https://letsupgrade.in/my-programs/EDSAJAN125",
+    "timestamp": "2026-08-23T00:22:56.752037+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "server": "openresty/1.25.3.2",
+      "response_time_ms": 696,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-9458A54BDE",
+    "type": "url",
+    "original_url": "https://letsupgrade.in/my-programs/EDSAJAN125",
+    "normalized_url": "https://letsupgrade.in/my-programs/EDSAJAN125",
+    "timestamp": "2026-08-23T00:22:53.031548+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "server": "openresty/1.25.3.2",
+      "response_time_ms": 751,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-645E65EBE7",
+    "type": "url",
+    "original_url": "https://letsupgrade.in/my-programs/EDSAJAN125",
+    "normalized_url": "https://letsupgrade.in/my-programs/EDSAJAN125",
+    "timestamp": "2026-08-23T00:22:52.771020+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "server": "openresty/1.25.3.2",
+      "response_time_ms": 785,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-0DDBEE99AC",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fpage%2Fhome",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fpage%2Fhome",
+    "timestamp": "2026-08-23T00:22:23.831594+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: login, win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: login, win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 570,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-E34B3F008E",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-23T00:22:19.933215+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 696,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-4193075C33",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-23T00:21:40.315360+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-E085772759",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-23T00:21:25.879258+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 2848,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-9848955C0D",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-23T00:20:42.297324+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-CBE185E665",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-23T00:20:42.285198+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-AA8C6F0A83",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-23T00:20:42.274200+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-738ED32BBD",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-23T00:20:42.263090+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-D73BEE464E",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-23T00:20:42.252545+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-70760186D1",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-23T00:20:42.240373+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-56B5988E15",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-23T00:20:42.228208+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-13AB9220F8",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-23T00:20:42.216458+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-E687A8B28F",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-23T00:20:42.205224+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-D1F8F2CA8B",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-23T00:20:41.875896+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Evaluation Source: Tier 2 - Static Heuristics (60%) & ML Model (40%) Fallback (Live inspection unavailable)",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-151C56D87C",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-23T00:20:41.741476+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: https://google.com] Evaluation Source: Trusted Domain Allowlist Fast-Path",
+      "[URL: https://google.com] Verified legitimate organization domain: Verified legitimate organization domain (Google)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-D52B01886C",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-23T00:20:41.688502+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-8B285C3201",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-23T00:20:36.097931+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-75FD7749DF",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-23T00:17:34.267381+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-47E1370762",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-23T00:17:34.253732+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-A61516382A",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-23T00:17:34.240093+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-D2D257A89B",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-23T00:17:34.230050+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-385FAF7AD1",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-23T00:17:34.217934+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-0155FE6239",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-23T00:17:34.203258+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-626D44C200",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-23T00:17:34.189871+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-D29B755BA9",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-23T00:17:34.179380+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-63BA933EC3",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-23T00:17:34.166821+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-E2EB3EBD59",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-23T00:17:33.791389+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Evaluation Source: Tier 2 - Static Heuristics (60%) & ML Model (40%) Fallback (Live inspection unavailable)",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-5D7351320E",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-23T00:17:33.575059+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: https://google.com] Evaluation Source: Trusted Domain Allowlist Fast-Path",
+      "[URL: https://google.com] Verified legitimate organization domain: Verified legitimate organization domain (Google)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-FFB102C080",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-23T00:17:33.524704+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-BB0C772B13",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-23T00:17:27.968893+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-1632490588",
+    "type": "url",
+    "original_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "normalized_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "timestamp": "2026-08-23T00:13:10.063756+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 654,
+      "page_title": "just a moment...",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-74D23287F9",
+    "type": "url",
+    "original_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "normalized_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "timestamp": "2026-08-23T00:13:08.971400+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 753,
+      "page_title": "just a moment...",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-E9A94F3723",
+    "type": "url",
+    "original_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "normalized_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "timestamp": "2026-08-23T00:12:17.551878+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 642,
+      "page_title": "just a moment...",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-9AB6D12EF9",
+    "type": "url",
+    "original_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "normalized_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "timestamp": "2026-08-23T00:12:07.342283+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 707,
+      "page_title": "just a moment...",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-C25F79AB36",
+    "type": "url",
+    "original_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "normalized_url": "https://audio.com/tillie-5/audio/post-malone-chemical-lyrics",
+    "timestamp": "2026-08-23T00:12:07.062129+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 898,
+      "page_title": "just a moment...",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-85FD0D4A6E",
+    "type": "url",
+    "original_url": "http://60.60.60.1:1000/keepalive?020d0d030707078b",
+    "normalized_url": "http://60.60.60.1:1000/keepalive?020d0d030707078b=",
+    "timestamp": "2026-08-23T00:11:57.943885+00:00",
+    "risk_score": 87,
+    "risk_level": "CRITICAL",
+    "category": "phishing",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Host is an IP address instead of a domain",
+      "Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "Host is an IP address instead of a domain",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 3004,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "HTTPConnectionPool(host='60.60.60.1', port=1000): Max retries exceeded with url: /keepalive?020d0d030707078b= (Caused by ConnectTimeoutError(<HTTPConnection(host='60.60.60.1', port=1000) at 0x29b3b930"
+    }
+  },
+  {
+    "analysis_id": "SS-1C8AA1021D",
+    "type": "url",
+    "original_url": "https://www.codsoft.in/",
+    "normalized_url": "https://www.codsoft.in",
+    "timestamp": "2026-08-23T00:11:46.077472+00:00",
+    "risk_score": 62,
+    "risk_level": "HIGH",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 83,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html",
+      "server": "hcdn",
+      "response_time_ms": 972,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-B421543D26",
+    "type": "url",
+    "original_url": "https://www.codsoft.in/",
+    "normalized_url": "https://www.codsoft.in",
+    "timestamp": "2026-08-23T00:11:12.857182+00:00",
+    "risk_score": 62,
+    "risk_level": "HIGH",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 83,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html",
+      "server": "hcdn",
+      "response_time_ms": 852,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-04AFFBE445",
+    "type": "url",
+    "original_url": "https://www.codsoft.in/",
+    "normalized_url": "https://www.codsoft.in",
+    "timestamp": "2026-08-23T00:10:54.737256+00:00",
+    "risk_score": 62,
+    "risk_level": "HIGH",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 83,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html",
+      "server": "hcdn",
+      "response_time_ms": 842,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-6BDB85615A",
+    "type": "url",
+    "original_url": "https://www.codsoft.in/",
+    "normalized_url": "https://www.codsoft.in",
+    "timestamp": "2026-08-23T00:10:54.550797+00:00",
+    "risk_score": 62,
+    "risk_level": "HIGH",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 83,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html",
+      "server": "hcdn",
+      "response_time_ms": 1081,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-A2E198C176",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-23T00:10:45.224504+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 2648,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-46D8DD3DB6",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-23T00:10:27.896563+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 608,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-1417D7DDC0",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-23T00:10:13.866925+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 801,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-C2E4DA7F67",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-23T00:10:13.641215+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 760,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-710B7A3931",
+    "type": "url",
+    "original_url": "https://www.hackerrank.com/dashboard",
+    "normalized_url": "https://www.hackerrank.com/dashboard",
+    "timestamp": "2026-08-23T00:09:51.077648+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-79EB2ACA69",
+    "type": "url",
+    "original_url": "https://www.hackerrank.com/dashboard",
+    "normalized_url": "https://www.hackerrank.com/dashboard",
+    "timestamp": "2026-08-23T00:09:33.128872+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-81F6873195",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-23T00:08:34.099989+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-8E61E807E9",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-23T00:08:34.084663+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-7324584198",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-23T00:08:34.072182+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-4BF09346AC",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-23T00:08:34.055607+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-52AC4FECE1",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-23T00:08:34.044598+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-3DC1DC8C6D",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-23T00:08:34.024613+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-0AA41BADE6",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-23T00:08:34.015558+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-D03321FD79",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-23T00:08:33.999575+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-F669602DE6",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-23T00:08:33.985102+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-5D6DDFAAFB",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-23T00:08:33.500286+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-407707DBAD",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-23T00:08:33.257682+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: https://google.com] Verified legitimate organization domain: Verified legitimate organization domain (Google)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-FA7E6D9D81",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-23T00:08:33.194452+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-AB71FB7784",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-23T00:08:27.918594+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-525669FB5C",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-23T00:00:03.583565+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 659,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-5C5154B350",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:59:57.086335+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 818,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-7B227090D4",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:59:56.474601+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 688,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-D46C7B0A42",
+    "type": "url",
+    "original_url": "https://www.hackerrank.com/dashboard",
+    "normalized_url": "https://www.hackerrank.com/dashboard",
+    "timestamp": "2026-08-22T23:58:48.994000+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "drive_by_download",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Drive-by download link detected on page (e.g. '//help.hackerrank.com')"
+    ],
+    "detected_indicators": [
+      "drive_by_download_risk"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "nginx",
+      "response_time_ms": 2080,
+      "page_title": "dashboard | hackerrank",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 16,
+      "executable_links_count": 1,
+      "live_threats": [
+        "drive_by_download_risk"
+      ],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-9F77865CF5",
+    "type": "url",
+    "original_url": "https://www.hackerrank.com/dashboard",
+    "normalized_url": "https://www.hackerrank.com/dashboard",
+    "timestamp": "2026-08-22T23:58:41.232903+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "drive_by_download",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Drive-by download link detected on page (e.g. '//help.hackerrank.com')"
+    ],
+    "detected_indicators": [
+      "drive_by_download_risk"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "nginx",
+      "response_time_ms": 1718,
+      "page_title": "dashboard | hackerrank",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 16,
+      "executable_links_count": 1,
+      "live_threats": [
+        "drive_by_download_risk"
+      ],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-91FF91123F",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:57:21.119942+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 630,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-6FB2D63571",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:57:05.043893+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 749,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-CA9972B7F9",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:56:55.965526+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 663,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-3E88A9D60C",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-22T23:56:23.050842+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 3370,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-24C3454359",
+    "type": "message",
+    "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",
+    "timestamp": "2026-08-22T23:54:10.000176+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "financial_fraud",
+    "confidence": 62,
+    "reasons": [
+      "Banking-related language detected.",
+      "Financial or reward language detected.",
+      "Sensitive personal information language detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "financial",
+      "personal_information",
+      "sensitive_request"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-244D34B9A6",
+    "type": "message",
+    "message_hash": "96b8691bf09a3062db05797a2f6d5bbe682d7dd6bda130770ce260b8b4f44a7c",
+    "timestamp": "2026-08-22T23:54:09.986616+00:00",
+    "risk_score": 30,
+    "risk_level": "MEDIUM",
+    "category": "malicious_download",
+    "confidence": 60,
+    "reasons": [
+      "Financial or reward language detected.",
+      "Download or install instruction detected."
+    ],
+    "detected_indicators": [
+      "download",
+      "financial"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-BD3118A28D",
+    "type": "message",
+    "message_hash": "3fd7d3f6c822c8f5fa66c44bc6c856a7e2c4114da0450834072630019df505b9",
+    "timestamp": "2026-08-22T23:54:09.974464+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "credential_theft",
+    "confidence": 88,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Credential or authentication language detected.",
+      "Threat of account suspension or closure detected.",
+      "Sensitive personal information language detected.",
+      "Request for OTP, password, PIN, or another credential detected.",
+      "Request for sensitive personal or financial information detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "credential",
+      "credential_request",
+      "personal_information",
+      "sensitive_request",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-A34B242763",
+    "type": "message",
+    "message_hash": "27a3578645f697fb57049bcc703e86cdf212e787423a95f3a7af48c3e75e6dd8",
+    "timestamp": "2026-08-22T23:54:09.961723+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "phishing",
+    "confidence": 89,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Link or verification action detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "link",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-FAC9869E71",
+    "type": "message",
+    "message_hash": "a108f99fd0beac7b9726c5a327fdb866e9a9cbfa6c7bf8d6404ddad88f293555",
+    "timestamp": "2026-08-22T23:54:09.948387+00:00",
+    "risk_score": 50,
+    "risk_level": "HIGH",
+    "category": "scam",
+    "confidence": 79,
+    "reasons": [
+      "Urgent language detected.",
+      "Financial or reward language detected.",
+      "Link or verification action detected."
+    ],
+    "detected_indicators": [
+      "financial",
+      "link",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Avoid interacting with the message and verify the request through a trusted, independent source.",
+    "model_prediction": "suspicious"
+  },
+  {
+    "analysis_id": "SS-C087AC2706",
+    "type": "message",
+    "message_hash": "aa1e135c800ba206242af33590a6fcf2dce903622a45510f7ee071ef9d1202ab",
+    "timestamp": "2026-08-22T23:54:09.934193+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 62,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-68218EA09E",
+    "type": "message",
+    "message_hash": "3c91df5799f91fa45feff4cfcb89836dac402e5a8500972f01d2aa2c3f6f1211",
+    "timestamp": "2026-08-22T23:54:09.919764+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 64,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-9F04B29819",
+    "type": "message",
+    "message_hash": "803b247292dbd8f185c2380c7de5b1d1de8708898a031947cdbdbc0dad3bbe39",
+    "timestamp": "2026-08-22T23:54:09.905052+00:00",
+    "risk_score": 60,
+    "risk_level": "HIGH",
+    "category": "malicious_download",
+    "confidence": 71,
+    "reasons": [
+      "Urgent language detected.",
+      "Banking-related language detected.",
+      "Download or install instruction detected.",
+      "Threat of account suspension or closure detected."
+    ],
+    "detected_indicators": [
+      "banking",
+      "download",
+      "threat",
+      "urgent_language"
+    ],
+    "recommendation": "Potentially suspicious. Do not click the link, do not install the file, and verify the sender through a trusted channel.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-8DCCBD24C2",
+    "type": "message",
+    "message_hash": "b079fca1329c4cacd3f3d0211dbc2b590767c1ac594d48cbe17549cc2bf9e4fc",
+    "timestamp": "2026-08-22T23:54:09.889316+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "Benign",
+    "confidence": 63,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected.",
+    "model_prediction": "benign"
+  },
+  {
+    "analysis_id": "SS-5364B30A66",
+    "type": "image",
+    "filename": "phishing_qr.png",
+    "timestamp": "2026-08-22T23:54:09.404400+00:00",
+    "risk_score": 100,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Host is an IP address instead of a domain",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] IP host is private or loopback",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Suspicious keyword(s) found: update, login",
+      "[URL: http://192.168.1.1/login.php?update_kyc=true] Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected",
+      "Possible typosquatting / domain spoofing detected: '1' is suspiciously close to 'dhl'",
+      "Host is an IP address instead of a domain",
+      "IP host is private or loopback",
+      "Domain validation failed: IP host is private, loopback, link-local, multicast, or reserved",
+      "Suspicious keyword(s) found: update, login",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "High risk detected. Do not open extracted links, scan QR codes, or follow instructions from this image. Verify any requests independently through an official source.",
+    "extracted_text": "",
+    "qr_codes": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "extracted_urls": [
+      "http://192.168.1.1/login.php?update_kyc=true"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-A281B200A5",
+    "type": "image",
+    "filename": "benign_qr.png",
+    "timestamp": "2026-08-22T23:54:09.115829+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [
+      "Decoded 1 QR code(s) from image.",
+      "[URL: https://google.com] Verified legitimate organization domain: Verified legitimate organization domain (Google)"
+    ],
+    "detected_indicators": [
+      "qr_code_detected",
+      "url_detected"
+    ],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [
+      "https://google.com"
+    ],
+    "extracted_urls": [
+      "https://google.com"
+    ],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "success"
+  },
+  {
+    "analysis_id": "SS-35CEDD455F",
+    "type": "image",
+    "filename": "blank.jpg",
+    "timestamp": "2026-08-22T23:54:08.974311+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 85,
+    "reasons": [
+      "No QR codes or textual indicators found in the image."
+    ],
+    "detected_indicators": [],
+    "recommendation": "No immediate cyber threats detected. Verify the sender or context before acting on any instructions.",
+    "extracted_text": "",
+    "qr_codes": [],
+    "extracted_urls": [],
+    "ocr_status": "tesseract_not_installed",
+    "qr_status": "no_qr_found"
+  },
+  {
+    "analysis_id": "SS-E79E824CE8",
+    "type": "apk",
+    "filename": "Sample.apk",
+    "app_name": "NetMirror",
+    "package_name": "app.netmirror.nmv2",
+    "sha256": "e78acd9ebabdfd765b7060f2b2f4fd46731baa3e501a978e7ddefde54417233d",
+    "timestamp": "2026-08-22T23:54:03.334432+00:00",
+    "risk_score": 18,
+    "risk_level": "LOW",
+    "verdict": "low_risk",
+    "permission_count": 6,
+    "suspicious_permissions": [],
+    "suspicious_apis": [
+      {
+        "indicator": "java/lang/Runtime",
+        "risk_points": 10,
+        "description": "Runtime execution capability detected"
+      },
+      {
+        "indicator": "android/view/WindowManager",
+        "risk_points": 5,
+        "description": "Window management capability detected"
+      },
+      {
+        "indicator": "java/net/HttpURLConnection",
+        "risk_points": 1,
+        "description": "Network communication detected"
+      },
+      {
+        "indicator": "okhttp3",
+        "risk_points": 1,
+        "description": "OkHttp networking library detected"
+      },
+      {
+        "indicator": "android/webkit/WebView",
+        "risk_points": 1,
+        "description": "WebView usage detected"
+      }
+    ],
+    "manifest_issues": [
+      {
+        "flag": "manifest_parse_error",
+        "description": "'bytes' object has no attribute 'findall'",
+        "risk_points": 0
+      }
+    ],
+    "dangerous_combos": [],
+    "network_indicators": {
+      "urls": [
+        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+        "http://%s/inspector/device?name=%s&app=%s&device=%s&profiling=%b",
+        "http://%s/open-debugger?device=%s",
+        "http://%s/status",
+        "http://www.android.com/",
+        "https://docs.swmansion.com/react-native-gesture-handler/docs/guides/migrating-off-rnghenabledroot",
+        "https://github.com/c19354837/react-native-system-setting/issues/48",
+        "https://youtrack.jetbrains.com/issue/KT-55980"
+      ],
+      "ips": [],
+      "flagged_urls": [],
+      "flagged_ips": []
+    },
+    "certificate_info": {
+      "subject": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "issuer": "Email Address: android@android.com, Common Name: Android, Organizational Unit: Android, Organization: Android, Locality: Mountain View, State/Province: California, Country: US",
+      "algorithm": "rsassa_pkcs1v15",
+      "is_debug_cert": false,
+      "is_weak_algo": false,
+      "flags": []
+    }
+  },
+  {
+    "analysis_id": "SS-AD1510D66B",
+    "type": "url",
+    "original_url": "https://www.youtube.com/?sttick=0",
+    "normalized_url": "https://www.youtube.com?sttick=0",
+    "timestamp": "2026-08-22T23:46:41.297128+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-B6A8D95864",
+    "type": "url",
+    "original_url": "https://www.youtube.com/",
+    "normalized_url": "https://www.youtube.com",
+    "timestamp": "2026-08-22T23:46:39.457334+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-CD4FC247EF",
+    "type": "url",
+    "original_url": "https://gemini.google.com/notebook/4119b24e-9d14-4400-9ddf-840ff0522fa8",
+    "normalized_url": "https://gemini.google.com/notebook/4119b24e-9d14-4400-9ddf-840ff0522fa8",
+    "timestamp": "2026-08-22T23:44:22.357519+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-168CF4F017",
+    "type": "url",
+    "original_url": "http://localhost:3000/",
+    "normalized_url": "http://localhost:3000",
+    "timestamp": "2026-08-22T23:43:01.202979+00:00",
+    "risk_score": 87,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 98,
+    "reasons": [
+      "Domain validation failed: Host is localhost or loopback",
+      "Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "Domain validation failed: Host is localhost or loopback",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Invalid domain or unsupported scheme"
+    }
+  },
+  {
+    "analysis_id": "SS-FFBF0C5FFD",
+    "type": "url",
+    "original_url": "http://localhost:3000/",
+    "normalized_url": "http://localhost:3000",
+    "timestamp": "2026-08-22T23:42:42.752215+00:00",
+    "risk_score": 87,
+    "risk_level": "CRITICAL",
+    "category": "invalid_url",
+    "verdict": "FRAUD",
+    "confidence": 98,
+    "reasons": [
+      "Domain validation failed: Host is localhost or loopback",
+      "Not HTTPS (no TLS)"
+    ],
+    "detected_indicators": [
+      "Domain validation failed: Host is localhost or loopback",
+      "Not HTTPS (no TLS)"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Invalid domain or unsupported scheme"
+    }
+  },
+  {
+    "analysis_id": "SS-2FC1417697",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:41:49.216632+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 739,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-772B1F3F2C",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:41:42.516852+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 741,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-C2E3F68F60",
+    "type": "url",
+    "original_url": "https://leetcode.com/problemset/",
+    "normalized_url": "https://leetcode.com/problemset",
+    "timestamp": "2026-08-22T23:41:41.934624+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 403,
+      "content_type": "text/html; charset=utf-8",
+      "server": "cloudflare",
+      "response_time_ms": 689,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-57994B3885",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-22T23:41:34.618807+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 2882,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-4069344DAF",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fpage%2Fhome",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fpage%2Fhome",
+    "timestamp": "2026-08-22T23:41:19.878789+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: login, win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: login, win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 665,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-5E91CBDA0B",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-22T23:41:15.168805+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 613,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-6F3B4121E2",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-22T23:41:03.308834+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 772,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-C40F42E557",
+    "type": "url",
+    "original_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "normalized_url": "https://infyspringboard.onwingspan.com/web/en/page/home",
+    "timestamp": "2026-08-22T23:41:03.098631+00:00",
+    "risk_score": 82,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "detected_indicators": [
+      "Suspicious keyword(s) found: win"
+    ],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "Wingspan",
+      "response_time_ms": 823,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-B6BFB5E399",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-22T23:40:58.005620+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 3033,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-4D83861BAF",
+    "type": "url",
+    "original_url": "https://www.youtube.com/",
+    "normalized_url": "https://www.youtube.com",
+    "timestamp": "2026-08-22T23:40:40.849296+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Legitimate and trusted domain.",
+    "model_prediction": "0",
+    "live_inspection": {
+      "attempted": false,
+      "reachable": false,
+      "status_code": null,
+      "content_type": "",
+      "server": "",
+      "response_time_ms": 0,
+      "page_title": "",
+      "forms_count": 0,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 0,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": "Domain is in trusted whitelist (instant bypass)"
+    }
+  },
+  {
+    "analysis_id": "SS-C9F754C28F",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-22T23:40:05.458914+00:00",
+    "risk_score": 79,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 99,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 2802,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-BB51E0C35A",
+    "type": "url",
+    "original_url": "https://www.cloudskillsboost.google/paths/419",
+    "normalized_url": "https://www.cloudskillsboost.google/paths/419",
+    "timestamp": "2026-08-22T23:23:56.352379+00:00",
+    "risk_score": 80,
+    "risk_level": "CRITICAL",
+    "category": "benign",
+    "verdict": "FRAUD",
+    "confidence": 100,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "Do not open this URL or enter personal information. Verify the destination through an official source.",
+    "model_prediction": "1",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 5491,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
+    "analysis_id": "SS-7AC89B1919",
+    "type": "url",
+    "original_url": "https://www.skills.google/paths/419",
+    "normalized_url": "https://www.skills.google/paths/419",
+    "timestamp": "2026-08-22T23:23:51.021498+00:00",
+    "risk_score": 0,
+    "risk_level": "LOW",
+    "category": "benign",
+    "verdict": "SAFE",
+    "confidence": 45,
+    "reasons": [],
+    "detected_indicators": [],
+    "recommendation": "No major suspicious indicators detected. Continue only if you recognise the website and expected this link.",
+    "model_prediction": "unavailable",
+    "live_inspection": {
+      "attempted": true,
+      "reachable": true,
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "server": "",
+      "response_time_ms": 3101,
+      "page_title": "beginner: google cloud cybersecurity certificate | google skills",
+      "forms_count": 1,
+      "password_inputs_count": 0,
+      "iframes_count": 0,
+      "hidden_iframes_count": 0,
+      "links_checked_count": 15,
+      "executable_links_count": 0,
+      "live_threats": [],
+      "fallback_reason": null
+    }
+  },
+  {
     "analysis_id": "SS-8FC2E0672D",
     "type": "message",
     "message_hash": "f40ff125e0c5b9ec6c805718a96d0a92b272035c28e4f706b45e6cc3e60fd51a",

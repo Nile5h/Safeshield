@@ -14,7 +14,14 @@
   const urlEl = document.getElementById('blocked-url');
   if (urlEl) urlEl.textContent = rawUrl || '(unknown URL)';
 
-  // ── Populate score badge ────────────────────────────────────────────────────
+  // ── Populate score and tier badges ──────────────────────────────────────────
+  const tier = params.get('tier') || '';
+  const tierBadge = document.getElementById('tier-badge');
+  if (tierBadge && tier) {
+    tierBadge.textContent = tier;
+    tierBadge.style.display = 'inline-block';
+  }
+
   const scoreBadge = document.getElementById('score-badge');
   if (scoreBadge) {
     scoreBadge.textContent = `Risk Score: ${score}/100`;

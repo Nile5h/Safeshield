@@ -8,6 +8,10 @@
   </head>
   <body>
     <main class="app-shell">
+
+      <!-- ════════════════════════════════════════════════
+           HEADER — Brand + Live Status Indicators
+      ═════════════════════════════════════════════════ -->
       <header class="topbar">
         <div class="brand-block">
           <div class="brand-mark" aria-hidden="true">S</div>
@@ -16,76 +20,193 @@
             <p class="brand-tag">AI Cyber Risk Assistant</p>
           </div>
         </div>
-        <span class="privacy-pill">User-initiated analysis</span>
+        <div class="status-pills">
+          <span id="pill-guard" class="status-pill pill-guard">
+            <span class="pill-dot"></span>LIVE GUARD
+          </span>
+          <span id="pill-backend" class="status-pill pill-checking">
+            <span class="pill-dot"></span><span id="pill-backend-text">Connecting…</span>
+          </span>
+        </div>
       </header>
 
-      <!-- ── URL Risk section (auto-scan result) ── -->
-      <section class="url-scan-panel" aria-live="polite">
-        <div class="scan-header">
-          <span class="section-label">Current Page Risk</span>
-          <span id="scan-status" class="scan-status-pill">Checking…</span>
-        </div>
-        <div class="scan-body">
-          <div class="scan-score-row">
-            <span id="scan-risk-label" class="risk-label low">LOW RISK</span>
-            <span id="scan-score" class="score-label">—</span>
+      <!-- ════════════════════════════════════════════════
+           ACTIVE TAB SUMMARY CARD
+      ═════════════════════════════════════════════════ -->
+      <section class="tab-card" aria-live="polite" aria-label="Active tab risk summary">
+
+        <!-- Domain + scan meta row -->
+        <div class="tab-card-meta">
+          <div class="domain-row">
+            <span class="domain-icon" aria-hidden="true">🌐</span>
+            <span id="tab-domain" class="tab-domain">—</span>
           </div>
-          <ul id="scan-reasons" class="reasons-list scan-reasons"></ul>
+          <button id="btn-scan-again" class="scan-again-btn" type="button" title="Force a fresh backend scan">
+            ↻ Scan Again
+          </button>
+        </div>
+
+        <!-- Scanning / error skeleton -->
+        <div id="scan-loading" class="scan-state scan-loading" hidden>
+          <div class="spinner" aria-label="Scanning…"></div>
+          <span class="scan-state-text">Scanning with SafeShield AI…</span>
+        </div>
+
+        <div id="scan-error" class="scan-state scan-error" hidden>
+          <span class="scan-error-icon">⚠</span>
+          <div>
+            <p class="scan-state-text" id="scan-error-title">Backend Offline</p>
+            <p class="scan-error-sub" id="scan-error-sub">Running local heuristic scan — results may be limited.</p>
+          </div>
+        </div>
+
+        <!-- Main result body (hidden until result arrives) -->
+        <div id="scan-result" class="scan-result" hidden>
+
+          <!-- Risk score circle + verdict label -->
+          <div class="score-ring-wrap">
+            <div class="score-ring" id="score-ring" data-verdict="safe">
+              <span id="score-number" class="score-number">0</span>
+              <span class="score-denom">/100</span>
+            </div>
+            <div class="score-meta">
+              <span id="verdict-badge" class="verdict-badge verdict-safe">SAFE</span>
+              <span id="scan-category" class="scan-category">—</span>
+            </div>
+          </div>
+
+          <!-- Scoring Weightage Breakdown Card -->
+          <div class="weightage-block" id="weightage-block">
+            <div class="weightage-header">
+              <span class="block-label">Scoring &amp; Dynamic Weightage</span>
+              <span id="tier-badge" class="tier-badge tier-dynamic">TIER 1: LIVE DYNAMIC</span>
+            </div>
+            <div class="weight-bars-grid">
+              <div class="weight-item" id="weight-dynamic-item">
+                <div class="weight-item-header">
+                  <span class="weight-label"><span class="weight-icon">⚡</span> Dynamic Heuristics</span>
+                  <span id="weight-dynamic-val" class="weight-val">100%</span>
+                </div>
+                <div class="weight-bar-track">
+                  <div id="weight-dynamic-bar" class="weight-bar-fill fill-dynamic" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="weight-item" id="weight-static-item">
+                <div class="weight-item-header">
+                  <span class="weight-label"><span class="weight-icon">🛡️</span> Static Heuristics</span>
+                  <span id="weight-static-val" class="weight-val">0%</span>
+                </div>
+                <div class="weight-bar-track">
+                  <div id="weight-static-bar" class="weight-bar-fill fill-static" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="weight-item" id="weight-ml-item">
+                <div class="weight-item-header">
+                  <span class="weight-label"><span class="weight-icon">🤖</span> ML Model</span>
+                  <span id="weight-ml-val" class="weight-val">0%</span>
+                </div>
+                <div class="weight-bar-track">
+                  <div id="weight-ml-bar" class="weight-bar-fill fill-ml" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+            <p id="weightage-summary" class="weightage-summary-text">Dynamic Heuristic Verifications prioritized.</p>
+
+            <!-- 4 Dynamic Heuristic Verification Checks -->
+            <div class="dynamic-checks-block">
+              <span class="block-sublabel">Dynamic Heuristic Verifications:</span>
+              <div class="dynamic-checks-grid" id="dynamic-checks-grid">
+                <div class="dynamic-check-row" id="row-pwd">
+                  <div class="check-left">
+                    <span class="check-icon pass" id="icon-pwd">✓</span>
+                    <span class="check-name">Password Form Origin Safe</span>
+                  </div>
+                  <div class="check-right">
+                    <span class="check-weight-tag">35%</span>
+                    <span class="check-badge pass" id="badge-pwd">PASS</span>
+                  </div>
+                </div>
+                <div class="dynamic-check-row" id="row-iframe">
+                  <div class="check-left">
+                    <span class="check-icon pass" id="icon-iframe">✓</span>
+                    <span class="check-name">Zero-Size Iframes Clear</span>
+                  </div>
+                  <div class="check-right">
+                    <span class="check-weight-tag">20%</span>
+                    <span class="check-badge pass" id="badge-iframe">PASS</span>
+                  </div>
+                </div>
+                <div class="dynamic-check-row" id="row-brand">
+                  <div class="check-left">
+                    <span class="check-icon pass" id="icon-brand">✓</span>
+                    <span class="check-name">Brand / Domain Match</span>
+                  </div>
+                  <div class="check-right">
+                    <span class="check-weight-tag">25%</span>
+                    <span class="check-badge pass" id="badge-brand">PASS</span>
+                  </div>
+                </div>
+                <div class="dynamic-check-row" id="row-payload">
+                  <div class="check-left">
+                    <span class="check-icon pass" id="icon-payload">✓</span>
+                    <span class="check-name">Drive-By Payloads Clear</span>
+                  </div>
+                  <div class="check-right">
+                    <span class="check-weight-tag">20%</span>
+                    <span class="check-badge pass" id="badge-payload">PASS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reasons list -->
+          <div class="reasons-block" id="reasons-block">
+            <p class="block-label">Threat Indicators</p>
+            <ul id="scan-reasons" class="reasons-list"></ul>
+          </div>
+
+          <!-- Recommendation -->
+          <div class="recommendation-block" id="recommendation-block" hidden>
+            <p class="block-label">Recommended Action</p>
+            <p id="scan-recommendation" class="recommendation-text"></p>
+          </div>
+
+          <!-- Source tag -->
+          <div class="source-tag-row">
+            <span id="source-tag" class="source-tag">● Live backend scan</span>
+          </div>
+
+        </div><!-- /#scan-result -->
+      </section>
+
+      <!-- ════════════════════════════════════════════════
+           QUICK ACTIONS — Collapsible drawer
+      ═════════════════════════════════════════════════ -->
+      <section class="quick-actions">
+        <button class="drawer-toggle" id="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-body">
+          <span class="drawer-toggle-label">Manual Analysis Tools</span>
+          <span class="drawer-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="drawer-body" id="drawer-body" hidden>
+          <div class="drawer-grid">
+            <button class="drawer-btn" data-action="text" type="button">
+              <span class="drawer-icon">💬</span>Scan Text
+            </button>
+            <button class="drawer-btn" data-action="image" type="button">
+              <span class="drawer-icon">🖼</span>Scan Image / QR
+            </button>
+            <button class="drawer-btn" data-action="apk" type="button">
+              <span class="drawer-icon">📦</span>Scan APK
+            </button>
+          </div>
+          <p class="drawer-note">Manual tools require SafeShield backend to be running.</p>
         </div>
       </section>
 
-      <section class="hero-panel">
-        <div class="status-row">
-          <span class="status-dot"></span>
-          <span class="status-text">Privacy-first workflow</span>
-        </div>
-
-        <div class="button-grid" aria-label="Analysis actions">
-          <button class="action-btn" data-action="message" type="button">Analyze Message</button>
-          <button class="action-btn" data-action="url" type="button">Analyze URL</button>
-          <button class="action-btn" data-action="image" type="button">Analyze Image</button>
-          <button class="action-btn" data-action="apk" type="button">Analyze APK</button>
-          <button class="action-btn primary" data-action="report" type="button">Generate Report</button>
-        </div>
-      </section>
-
-      <section class="result-panel" aria-live="polite">
-        <div class="result-header">
-          <span id="risk-label" class="risk-label low">LOW RISK</span>
-          <span id="score-label" class="score-label">0/100</span>
-        </div>
-
-        <div class="result-body">
-          <div class="section-block">
-            <p class="section-label">Risk Score</p>
-            <h2 id="risk-score">0/100</h2>
-          </div>
-
-          <div class="section-block">
-            <p class="section-label">Category</p>
-            <p id="risk-category" class="content-text">No analysis selected</p>
-          </div>
-
-          <div class="section-block">
-            <p class="section-label">Why?</p>
-            <ul id="reasons-list" class="reasons-list">
-              <li>No threat indicators have been evaluated yet.</li>
-            </ul>
-          </div>
-
-          <div class="section-block">
-            <p class="section-label">Recommended Action</p>
-            <p id="recommended-action" class="content-text">Choose an analysis option to begin a user-initiated review.</p>
-          </div>
-
-          <div class="section-block evidence-block">
-            <p class="section-label">Evidence Snapshot</p>
-            <p id="evidence-summary" class="content-text">No evidence captured yet.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── CYBER-9: Session & Cookie Security ── -->
+      <!-- ════════════════════════════════════════════════
+           CYBER-9: Session & Cookie Security
+      ═════════════════════════════════════════════════ -->
       <section class="cookie-panel" aria-live="polite">
         <div class="cookie-panel-header">
           <span class="section-label">Session &amp; Cookie Security</span>
@@ -93,13 +214,13 @@
         </div>
 
         <!-- Tally row -->
-        <div class="cookie-tally" id="cookie-tally">
+        <div class="cookie-tally">
           <div class="tally-cell">
-            <span id="tally-total" class="tally-num">—</span>
+            <span id="tally-total"    class="tally-num">—</span>
             <span class="tally-lbl">Total</span>
           </div>
           <div class="tally-cell">
-            <span id="tally-secure" class="tally-num">—</span>
+            <span id="tally-secure"   class="tally-num">—</span>
             <span class="tally-lbl">Secure</span>
           </div>
           <div class="tally-cell">
@@ -128,11 +249,13 @@
               <!-- populated by popup.js -->
             </tbody>
           </table>
-          <p id="cookie-empty-msg" class="cookie-empty-msg" hidden>No session-related cookies detected on this page.</p>
+          <p id="cookie-empty-msg" class="cookie-empty-msg" hidden>
+            No session-related cookies detected on this page.
+          </p>
         </div>
       </section>
-    </main>
 
+    </main>
     <script src="popup.js"></script>
   </body>
 </html>

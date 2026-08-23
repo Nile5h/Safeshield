@@ -79,6 +79,7 @@ class URLAnalysisResponse(BaseModel):
     rule_confidence: int
     domain_valid: bool
     live_inspection: dict = Field(default_factory=dict)
+    scoring_breakdown: dict = Field(default_factory=dict)
 
 
 class ImageAnalysisResponse(BaseModel):
@@ -283,6 +284,7 @@ def analyze_url_endpoint(payload: URLRequest) -> URLAnalysisResponse:
         "recommendation": analysis.recommendation,
         "model_prediction": analysis.model_prediction,
         "live_inspection": analysis.live_inspection,
+        "scoring_breakdown": analysis.scoring_breakdown,
     }
 
     save_analysis(analysis_document)
@@ -304,6 +306,7 @@ def analyze_url_endpoint(payload: URLRequest) -> URLAnalysisResponse:
         rule_confidence=analysis.rule_confidence,
         domain_valid=analysis.domain_valid,
         live_inspection=analysis.live_inspection or {},
+        scoring_breakdown=analysis.scoring_breakdown or {},
     )
 
 

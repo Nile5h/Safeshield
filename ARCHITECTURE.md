@@ -1,176 +1,140 @@
 # SafeShield Architecture and AI Context
 
-This document is the source of truth for understanding the repository before proposing changes. Read it with the code; when behavior differs, the code wins and this document should be corrected.
+This document is the repository's maintenance reference. Read it with the implementation. When behavior differs, the code wins and this document should be corrected.
 
 ## System Boundary
 
 ```mermaid
 flowchart LR
-    User[User] --> Web[React web app :3000]
-    Web -->|Axios JSON or multipart| API[FastAPI backend :8000]
-    API --> Message[Message analyzer]
+    User[Analyst] --> Login[React login :3000]
+    Login --> Web[React scanner shell]
+    Web -->|Axios JSON or multipart| API[FastAPI :8000]
+    API --> Message[Message analyzer + risk engine]
     API --> URL[URL analyzer]
+    API --> Image[Image analyzer]
     API --> APK[APK analyzer]
-    Message --> MessageRules[Message rules]
+    Image --> OCR[Tesseract OCR]
+    Image --> QR[OpenCV / optional pyzbar]
+    Image --> URL
+    Image --> Message
+    URL --> Allowlist[Trusted allowlist]
+    URL --> Live[Live HTTP and HTML inspection]
+    URL --> Rules[URL normalization and rules]
+    URL --> URLML[Optional URL model]
     Message --> MessageML[Optional message model]
-    URL --> Normalize[URL normalization]
-    Normalize --> URLFeatures[URL feature extraction]
-    Normalize --> URLRules[URL rules]
-    URLFeatures --> URLML[Optional URL model]
-    API --> Mongo[(Optional MongoDB)]
-    TrainMsg[backend/ml training] --> MessageML
-    TrainURL[url_checker training] --> URLML
-    Extension[Chrome popup prototype] -. local templates .-> User
+    API --> Store[(MongoDB or local JSON)]
+    TrainMsg[backend/ml] --> MessageML
+    TrainURL[url_checker] --> URLML
+    Extension[Chrome MV3 prototype] -. local templates .-> User
 ```
 
-The React web application is the implemented live client. The extension is standalone and has no backend dependency. Image analysis code exists but is not routed.
+The frontend is a Vite React 18 single-page shell with state-based page selection, not a router. It calls a fixed Axios base URL (`http://127.0.0.1:8000`). The backend has no database requirement for analysis: `database.py` falls back to `backend/data/analyses_history.json`.
 
-## Runtime Request Flow
+## Authentication Boundary
+
+`POST /login` compares the request against three hard-coded demo users in `backend/main.py`, creates a random `ss_token_*` string, and sets an HttpOnly/Secure/SameSite cookie in the response. The React login page also stores the token, username, and role in local storage and uses the presence of `ss_token` as its route guard.
+
+Important: the backend analysis, history, and report routes do not currently require or validate this token. Authentication is therefore a frontend/demo access gate, not authorization. Any production change must introduce server-side session/token validation, remove hard-coded passwords, and review cookie/local-storage handling.
+
+## Request and Persistence Flow
+
+All analysis routes generate an `SS-XXXXXXXXXX` ID and call `save_analysis` after computing a result. MongoDB is selected when `MONGODB_URI` is configured and initialized successfully. Otherwise, or after a MongoDB failure, local JSON storage is used. Local writes are protected by a process lock, inserted newest first, and capped at 500 records.
+
+Message documents contain `message_hash` from SHA-256 of the trimmed message, not the plaintext. `get_all_analyses` removes any `message` field before returning history and substitutes a short hash target. URL, image, and APK documents use their target metadata. APK analysis results are persisted even though the route returns a richer analyzer result than the history summary.
+
+## Runtime Pipelines
 
 ### Message
 
-1. `backend/main.py` validates a JSON body containing `message`, rejecting unknown fields and enforcing the 1-5000 character limit.
-2. `backend/analyzer/message_analyzer.py` lowercases and whitespace-normalizes text, then checks word-boundary patterns for urgency, banking, credentials, finance, downloads, links, threats, and sensitive information.
-3. Credential and sensitive-information requests receive additional indicators when request verbs such as `send`, `enter`, `confirm`, or `verify` are present.
-4. `backend/risk_engine.py` combines rule indicators with an optional message model prediction.
-5. The score is capped at 100. A non-suspicious message is capped below 25, which maps to `LOW`.
-6. The API creates an `SS-XXXXXXXXXX` ID, optionally stores metadata plus a message hash, and returns the response.
-
-The model is supportive, not authoritative. The system remains usable when the message model is absent.
+1. `main.py` validates a JSON body with only `message`, 1-5000 characters.
+2. `analyzer/message_analyzer.py` lowercases and whitespace-normalizes the text and emits typed indicator matches for urgency, banking, credentials, finance, downloads, links, threats, and sensitive requests.
+3. `risk_engine.py` loads `backend/ml/models/message_model.joblib` lazily when present. Model errors or missing artifacts result in `model_prediction: "unavailable"`.
+4. Rule points, strong indicators, combinations, and a high-confidence suspicious model prediction produce a score from 0 to 100. Non-suspicious messages are capped at 24.
+5. Risk levels are `LOW` below 25, `MEDIUM` 25-49, `HIGH` 50-74, and `CRITICAL` 75-100. Category selection is ordered and returns stable strings such as `Benign`, `scam`, `phishing`, `credential_theft`, `financial_fraud`, or `malicious_download`.
+6. The API stores metadata and returns rule/model confidence, reasons, indicators, and a recommendation.
 
 ### URL
 
-1. `backend/main.py` trims and validates a URL string.
-2. `url_checker/dataset/utils/url_normalize.py` creates the normalized representation. It can add a scheme, remove selected tracking parameters, normalize paths, and flag IP, punycode, or malformed-host cases.
-3. `url_checker/dataset/utils/url_features.py` extracts structural URL features.
-4. `url_checker/dataset/utils/url_rules.py` produces suspicion, reasons, domain validity, and unusual findings.
-5. `backend/analyzer/url_analyzer.py` loads `url_model_calibrated.pkl` first, then `url_model.pkl`, and computes model and rule probabilities.
-6. Model probability is weighted at 60% and rule probability at 40%. Suspicious findings enforce a minimum score, and suspicious rule output produces a `FRAUD` verdict even when the score is below 50.
-7. The API returns both original and normalized URLs plus explainability fields.
+`analyzer/url_analyzer.py` is a multi-tier pipeline:
 
-URL verdict and numeric score are related but not identical. Check both the analyzer and API tests when changing either.
+1. `url_normalize.py` creates a canonical URL, adds a scheme when needed, removes selected tracking parameters, and records host/scheme details.
+2. Trusted-domain checks in `dataset/utils/allowlist.py`, followed by `dataset/forced_negatives.txt`, provide a Tier 0 fast-path. A match returns score 0, `LOW`, `SAFE`, confidence 99, and no live fetch.
+3. Non-allowlisted URLs are evaluated by `url_rules.py` and `url_features.py`. Rules cover malformed hosts, IP addresses, punycode, suspicious paths/parameters, and other URL structure signals.
+4. The URL model loads `url_checker/model/url_model_calibrated.pkl`, falling back to `url_model.pkl`. Features are aligned to `feature_names_in_` when available; model errors degrade to rule-only scoring.
+5. For valid HTTP(S) domains, `live_inspector.fetch_page` attempts dynamic inspection with a strict roughly 3-second timeout. It collects reachability, status, content type, server, title, forms, password inputs, iframes, hidden iframes, checked links, and executable links. HTML checks can identify credential harvesting, hidden iframes, drive-by payloads, and suspicious content types.
+6. Confirmed live threats can force a `FRAUD` verdict and a score in the 90-100 range. If live inspection is unreachable or threat-free, the pipeline falls back to static/model scoring. Static rules remain authoritative enough to prevent a clean zero-indicator URL from becoming fraud solely from an ML result.
+7. The response preserves `live_inspection` telemetry and `scoring_breakdown` so the UI can explain which tier was used. URL verdict (`SAFE`, `SUSPICIOUS`, `FRAUD`) and numeric risk level are related but intentionally not identical.
+
+Live inspection performs outbound requests to user-supplied URLs. It is not a full browser, JavaScript runtime, sandbox, or guarantee of safety. Treat SSRF, redirect, timeout, and privacy controls as production security work before exposing this service publicly.
+
+### Image and QR
+
+1. `main.py` accepts JPEG, PNG, WEBP, or BMP uploads at `/analyze/image` and rejects missing, empty, or unsupported files.
+2. `image_analyzer.py` decodes the image with Pillow/OpenCV, tries OpenCV QR detection and optional pyzbar, and runs Tesseract OCR.
+3. URLs found in QR payloads or OCR text are passed through `analyze_url`. OCR text, or non-URL QR text when OCR is empty, is passed through the message analyzer and risk engine.
+4. The aggregate score is the highest nested URL/message score, with a 10-point compound bonus when both are at least 25. Verdict logic escalates for fraud URLs, high/critical text, or elevated combined scores.
+5. The response includes `extracted_text`, `qr_codes`, `extracted_urls`, nested `message_analysis`, nested `url_analyses`, `ocr_status`, and `qr_status`. The image record is persisted with the extracted artifacts, so review sensitive uploads and local history access accordingly.
 
 ### APK
 
-1. `backend/main.py` accepts an `.apk` upload as multipart field `file`.
-2. The upload is written to a temporary file and deleted in a `finally` block after analysis.
-3. `backend/analyzer/apk_analyzer.py` parses the package with Androguard without executing it.
-4. The analyzer calculates SHA-256, reads package metadata, permissions, and component counts, and searches DEX content for suspicious APIs.
-5. Permission and API findings contribute points; the score is capped at 100.
-6. The verdict is `low_risk` below 30, `suspicious` from 30 through 59, and `dangerous` at 60 or higher.
-
-APK output is static-analysis evidence, not a complete malware determination.
+1. `/analyze/apk` accepts only filenames ending in `.apk`, writes the upload to a temporary file, and deletes it in `finally`.
+2. `apk_analyzer.py` uses Androguard to parse the package without executing it. It calculates SHA-256 and reads package/version metadata, permissions, components, DEX/API patterns, manifest issues, network indicators, certificate information, suspicious permissions, and dangerous permission combinations.
+3. The analyzer caps the score at 100 and emits `low_risk`, `suspicious`, or `dangerous`. `main.py` adds an uppercase risk level (`LOW`, `HIGH`, or `CRITICAL`) and compatibility aliases such as `component_counts` and `suspicious_apis` for the frontend.
+4. Static findings are useful triage evidence only. They cannot establish runtime behavior or prove that an APK is safe.
 
 ## API Contract
 
-| Method | Route | Request | Purpose |
+| Method | Route | Consumer | Notes |
 |---|---|---|---|
-| GET | `/` | none | Service metadata and documentation links |
-| GET | `/health` | none | Health response |
-| POST | `/analyze/message` | `{message: string}` | Analyze message risk |
-| POST | `/analyze/url` | `{url: string}` | Analyze URL risk |
-| POST | `/analyze/apk` | multipart `file` | Analyze APK risk |
+| GET | `/` | diagnostics | Service metadata, health/docs paths |
+| GET | `/health` | frontend startup | Returns service and `1.0.0` version |
+| POST | `/login` | Login page | Demo users; no API authorization afterward |
+| POST | `/analyze/message` | Message Scanner | JSON message analysis |
+| POST | `/analyze/url` | URL Scanner and Image Scanner | JSON URL analysis |
+| POST | `/analyze/image` | Image Scanner | Multipart image analysis |
+| POST | `/analyze/apk` | APK Scanner | Multipart APK analysis |
+| GET | `/history` | Analysis History | `scan_type` filter and `limit` query |
+| GET | `/reports/stats` | Reports | Aggregate storage statistics |
 
-CORS allows `http://localhost:3000`, `http://127.0.0.1:3000`, and `chrome-extension://*`. Allowed methods are GET and POST.
+Pydantic request models use `extra="forbid"`. Preserve response field names and category/verdict strings: the UI renders them directly and backend tests assert several of them. API consumers should handle `model_prediction: "unavailable"`, empty telemetry, missing OCR, and no persistence service.
 
-Request models reject unknown fields. Message length is 1-5000 characters; URL length is 1-2048 characters. Blank messages and URLs are rejected after trimming.
+## Component Ownership
 
-Common response concepts:
-
-- `risk_score`: integer from 0 to 100.
-- `risk_level`: `LOW`, `MEDIUM`, `HIGH`, or `CRITICAL` based on score thresholds 25, 50, and 75.
-- `category`: analyzer-specific label such as `Benign`, `phishing`, `scam`, `credential_theft`, `financial_fraud`, or `malicious_download`.
-- `reasons` and `detected_indicators`: explainability data for UI and debugging.
-- `model_prediction`: model result or `unavailable`.
-- `model_confidence` and `rule_confidence`: separate evidence confidence values.
-
-Message and URL analyses are optionally persisted to MongoDB. Message plaintext is represented by a SHA-256 hash in persisted documents. APK results are returned by the route but are not persisted by the current implementation.
-
-## Component Inventory
-
-### Backend
-
-- `backend/main.py`: FastAPI application, CORS, request/response models, IDs, routes, temporary APK handling, and persistence calls.
-- `backend/analyzer/message_analyzer.py`: deterministic message indicator extraction.
-- `backend/analyzer/url_analyzer.py`: URL normalization, rule/model orchestration, and URL response dataclass.
-- `backend/analyzer/apk_analyzer.py`: static APK metadata, permission, DEX, and component analysis.
-- `backend/analyzer/image_analyzer.py`: image analysis module; currently not routed.
-- `backend/risk_engine.py`: message model loading, rule scoring, category selection, recommendations, and message hashing.
-- `backend/database.py`: optional MongoDB client and `analyses` collection setup.
-- `backend/test_api.py`: `unittest` and FastAPI `TestClient` coverage for health and message behavior.
-- `backend/data_sources.md`: provenance and notes for message datasets.
-
-### Message ML
-
-- `backend/ml/preprocess.py`: preprocessing helpers.
-- `backend/ml/build_message_dataset.py`: builds message feature data.
-- `backend/ml/train_message_model.py`: trains and saves the message model.
-- `backend/ml/test_message_model.py`: model smoke test.
-- `backend/data/messages.csv`: curated message data.
-- `backend/data/messages_features.csv`: engineered message features.
-- `backend/data/spam.csv`: spam corpus input.
-- `backend/ml/models/message_model.joblib`: generated runtime artifact when training has been run.
-
-### URL Checker
-
-- `url_checker/train_model.py`: URL training and calibration pipeline.
-- `url_checker/dataset/utils/url_normalize.py`: URL canonicalization and structural flags.
-- `url_checker/dataset/utils/url_features.py`: model feature extraction.
-- `url_checker/dataset/utils/url_rules.py`: hard and soft heuristic checks.
-- `url_checker/dataset/utils/text_clean.py`: text-cleaning helper.
-- `url_checker/scripts/test_rule_check.py`: rule smoke checks.
-- `url_checker/scripts/evaluate_url_checker.py`: evaluates URL analysis and writes failure data.
-- `url_checker/model/`: serialized models and calibration metadata.
-- `url_checker/dataset/`: training/evaluation CSVs, forced negatives, scan logs, and raw provider snapshots.
-
-### Frontend
-
-- `frontend/src/main.jsx`: React entry point and StrictMode mount.
-- `frontend/src/App.jsx`: page selection, navigation state, and backend health state.
-- `frontend/src/api.js`: Axios client for health, message, URL, and multipart APK requests.
-- `frontend/src/pages/Dashboard.jsx`: dashboard placeholder view.
-- `frontend/src/pages/MessageScanner.jsx`: message input and result view.
-- `frontend/src/pages/URLScanner.jsx`: URL input and result view.
-- `frontend/src/pages/ApkScanner.jsx`: APK file selection, upload, and result view.
-- `frontend/src/**/*.css`: application and scanner styles.
-- `frontend/vite.config.js`: Vite development server configuration on port 3000 with strict port behavior.
-- `frontend/package.json`: React, Axios, Vite, and build scripts.
-
-### Extension
-
-- `extension/manifest.json`: Manifest V3 metadata and permissions.
-- `extension/popup.html`: popup shell.
-- `extension/popup.js`: local popup behavior and hard-coded analysis templates; stores the last result under `safeShieldLastResult`.
-- `extension/popup.css`: popup styles.
-- `extension/content.js`: currently empty and not registered in the manifest.
-
-## Data and Model Notes
-
-The URL training pipeline uses `urls.csv`, `urls_train.csv`, optional `verified_online.csv`, `negatives_seed.csv`, `forced_negatives.txt`, and generated safe URL variants. Training must tolerate the optional verified-online dataset being absent.
-
-Runtime model loading is lazy and failures are caught broadly. A compatibility problem may appear only as `model_prediction: "unavailable"`; check training and runtime versions of scikit-learn and joblib before replacing artifacts.
-
-Raw provider responses under `url_checker/dataset/raw_responses/` are dataset or audit material, not a live provider-call path. Treat them as potentially sensitive and avoid exposing credentials or unnecessary response contents in logs or documentation.
+- `backend/main.py`: FastAPI app, CORS, request/response models, login, IDs, routes, upload validation, and persistence orchestration.
+- `backend/analyzer/message_analyzer.py`: deterministic message indicators.
+- `backend/risk_engine.py`: message model loading, score/category/recommendation logic, confidence, and message hashing.
+- `backend/analyzer/url_analyzer.py`: URL pipeline, allowlist, live inspection, model/rule blend, verdict, telemetry, and feedback logging.
+- `backend/analyzer/live_inspector.py`: outbound page fetching and response telemetry.
+- `backend/analyzer/image_analyzer.py`: OCR, QR, URL extraction, nested analysis, and aggregation.
+- `backend/analyzer/apk_analyzer.py`: Android static inspection and scoring.
+- `backend/database.py`: MongoDB selection, local JSON fallback, history sanitization, and report aggregation.
+- `backend/ml/`: message feature preparation, training, evaluation, and tests.
+- `url_checker/dataset/utils/`: URL normalization, features, rules, allowlist, and feedback support.
+- `url_checker/model/`: URL model artifacts and calibration metadata.
+- `frontend/src/App.jsx`: authentication state, backend health, navigation, and page rendering.
+- `frontend/src/api.js`: Axios calls and multipart construction for all backend endpoints.
+- `frontend/src/pages/`: login, scanners, dashboard, history, and reports views.
+- `extension/`: standalone MV3 popup prototype; unrelated to the React session and API client.
 
 ## AI Change Guidance
 
-Before changing behavior:
+Before editing behavior, identify the owning layer and trace the field from analyzer computation through `main.py`, `api.js`, and the consuming page. Make the smallest change consistent with local patterns.
 
-1. Identify whether the change belongs in a route, analyzer, risk engine, model training code, frontend client, or extension.
-2. Trace every response field from computation through `backend/main.py` to the consuming UI.
-3. Preserve explainability and add focused tests for new categories, thresholds, normalization, upload validation, or failure behavior.
-4. Check optional-model and no-MongoDB behavior; local development should remain usable without either service.
-5. Keep message plaintext out of persisted documents and diagnostic output.
-6. Update this document when a feature becomes live, a route changes, a model path changes, or an integration is removed.
+- Add focused backend tests for rules, thresholds, schemas, normalization, upload failures, model fallback, and persistence behavior.
+- For URL changes, test trusted domains, safe URLs, suspicious URLs, malformed hosts, IP hosts, punycode, unreachable pages, live threat HTML, and redirect/timeout behavior.
+- For image changes, test blank images, invalid files, OCR-unavailable behavior, QR URLs, QR text, and combined URL/message risk.
+- For APK changes, test malformed files, benign fixtures, permission-heavy fixtures, and component/API findings without executing packages.
+- Keep model loading lazy and failure-tolerant. A missing or incompatible artifact must not disable rule analysis.
+- Keep message plaintext out of persistence and diagnostic output. Treat extracted image text, URLs, uploaded APK metadata, raw response snapshots, and feedback datasets as potentially sensitive.
+- Do not claim live VirusTotal or Google Safe Browsing integration: current runtime code uses local rules, local models, an allowlist, and the live page inspector.
+- Update this document and README when a route, integration, model path, persistence behavior, or prototype status changes.
 
-Avoid broad refactors while changing detection rules. Rule names and category strings are used by tests and UI expectations. URL normalization changes can alter displayed output and model features, so validate representative safe, suspicious, malformed, IP-host, and punycode URLs. APK changes should include benign, permission-heavy, and malformed-file cases where fixtures are available.
+## Known Gaps
 
-## Known Gaps and Safe Next Steps
-
-- Add a frontend environment-based API URL instead of the hard-coded localhost value.
-- Add dedicated URL and APK endpoint tests plus focused analyzer tests.
-- Decide whether MongoDB failures should fail requests or return unsaved analysis with an explicit persistence warning.
-- Wire the extension to a deliberate backend contract before adding content-script access.
-- Route image analysis or remove it from the advertised product scope.
-- Add a frontend test suite for scanner states and API failures.
-- Reconcile older URL-checker documentation with the current implementation and remove stale external-service claims.
+- Replace hard-coded demo authentication with server-enforced authorization before deployment.
+- Make the frontend API base URL environment-configurable and align deployment CORS.
+- Add frontend tests and broader URL, APK, image, persistence, and authentication tests.
+- Decide whether live URL fetching needs stronger SSRF protections, redirect policy, rate limits, and isolation.
+- Decide how to expose persistence failures to users rather than only logging fallback behavior.
+- Replace static dashboard values with `/reports/stats` data or clearly label the dashboard as a placeholder.
+- Reconcile any older `url_checker` documentation that still describes external reputation-provider calls.

@@ -1,81 +1,82 @@
 # SafeShield
 
-SafeShield is a local-first cyber-risk analysis application for user-initiated inspection of suspicious messages, URLs, and Android APK files. It combines deterministic rules, optional machine-learning models, explainable findings, and a React interface backed by FastAPI.
+SafeShield is a local-first cyber-risk analysis application for user-initiated inspection of messages, URLs, images, QR codes, and Android APK files. It combines deterministic rules, optional machine-learning models, URL live inspection, OCR/QR extraction, explainable findings, and a React interface backed by FastAPI.
 
-SafeShield is a research and development project. Its results support human review and do not replace security, financial, legal, or incident-response decisions.
+This is an educational and research prototype. Results are evidence for human review, not a complete malware verdict or a replacement for security, financial, legal, or incident-response decisions.
 
-## Current Scope
+## Current State
 
-Implemented end to end:
+Implemented:
 
-- Message analysis through the FastAPI backend and React Message Scanner.
-- URL normalization, rule analysis, optional model scoring, and React URL Scanner results.
-- APK upload and static analysis through the FastAPI backend and React APK Scanner.
-- Explainable scores, risk levels or verdicts, categories, reasons, indicators, confidence values, and recommendations.
-- Optional MongoDB persistence. Message plaintext is not stored; message records contain a SHA-256 hash.
-- Offline training and evaluation utilities for message and URL models.
+- React web application with demo login, dashboard shell, four scanners, history, and reports views.
+- Message analysis using word-boundary indicators, deterministic scoring, and an optional `message_model.joblib` model.
+- URL analysis using trusted-domain fast-path, normalization, static rules, optional calibrated ML, and dynamic HTTP/HTML inspection.
+- Image analysis using Pillow/OpenCV, optional pyzbar QR decoding, Tesseract OCR, and recursive URL/message analysis of extracted content.
+- APK static analysis using Androguard: metadata, SHA-256, permissions, dangerous combinations, DEX/API indicators, manifest issues, network indicators, certificates, and component counts.
+- Explainable response fields: risk score and level, category/verdict, confidence, reasons, indicators, recommendation, model status, and supporting telemetry where applicable.
+- Scan persistence through MongoDB when configured, with a local JSON fallback at `backend/data/analyses_history.json` capped at 500 records.
+- Offline message and URL training/evaluation utilities.
+- Chrome Manifest V3 extension prototype with local result templates only.
 
-Prototype or incomplete:
+Known limitations:
 
-- The Chrome extension currently displays local hard-coded result templates. It does not call the backend or inspect WhatsApp content.
-- Dashboard statistics and recent analyses are static placeholders.
-- Image analysis code exists but is not exposed by an API route or frontend page.
-- Image Scanner, Analysis History, and Reports navigation items are disabled in the React app.
-- URL-checker documentation may mention external reputation providers, but the current runtime does not make live VirusTotal or Google Safe Browsing requests.
-- No frontend test suite currently exists.
+- Login uses hard-coded demo credentials and generates a token, but the analysis/history/report API routes do not currently validate that token. Do not deploy this authentication design as production security.
+- The dashboard cards and recent-analysis area are static placeholders; use History and Reports for live stored data.
+- The frontend API URL is hard-coded to `http://127.0.0.1:8000`; the commented `VITE_API_URL` line is not active.
+- URL live inspection makes outbound HTTP requests. It can fail, time out, or fall back to static analysis. It is not a browser sandbox and does not execute JavaScript.
+- APK analysis is static only. It does not execute, decompile, or fully determine whether an application is malicious.
+- OCR and pyzbar depend on local native tooling. Tesseract is optional at runtime; without it, OCR reports `tesseract_not_installed`. QR decoding can be limited when the pyzbar native library is unavailable.
+- No frontend test suite exists. Backend coverage is focused on API smoke tests and selected image/message behavior.
+- The extension does not call the backend, inspect WhatsApp, or use the React login session.
 
-For the detailed system map and maintenance guidance, read [ARCHITECTURE.md](ARCHITECTURE.md).
+For code ownership, data flow, contracts, and AI maintenance guidance, read [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Repository Layout
 
 ```text
 SafeShield/
 |- backend/                 FastAPI service and Python analyzers
-|  |- analyzer/            Message, URL, APK, and image analyzers
-|  |- data/                Message datasets
-|  |- ml/                  Message preprocessing and training
-|  |- main.py              API app, models, routes, and persistence calls
-|  |- risk_engine.py       Message scoring and categorization
-|  |- database.py          Optional MongoDB setup
-|  |- requirements.txt     Backend dependencies
+|  |- analyzer/            Message, URL, APK, image, and live inspection code
+|  |- data/                Datasets and local analysis history
+|  |- ml/                  Message preprocessing and training scripts
+|  |- main.py              API app, schemas, routes, uploads, and persistence calls
+|  |- risk_engine.py       Message scoring, categories, recommendations, and hashing
+|  |- database.py          MongoDB/local JSON persistence
 |  `- test_*.py            Backend tests
-|- frontend/                React 18 and Vite web application
-|  `- src/                 App shell, API client, pages, and styles
+|- frontend/                React 18 and Vite application
 |- extension/               Chrome Manifest V3 popup prototype
 |- url_checker/             URL rules, features, models, datasets, and scripts
-|- ARCHITECTURE.md          System design and AI maintenance context
-`- README.md                Project setup and usage guide
+|- ARCHITECTURE.md          System design and AI change context
+`- README.md                Setup and operational guide
 ```
-
-Large or generated files are summarized rather than listed individually. The URL checker contains model artifacts, datasets, scan logs, and raw provider-response snapshots under `url_checker/dataset/`.
 
 ## Requirements
 
-- Windows, macOS, or Linux.
 - Python 3.10 or newer.
 - Node.js 16 or newer and npm.
-- MongoDB only when persistence is required.
-- Java/Android tooling is not required for the current APK analysis implementation; APK files are parsed statically with Androguard.
+- MongoDB is optional. Without it, the backend writes local JSON history.
+- Tesseract OCR is optional for image text extraction. Set `TESSERACT_CMD` when the executable is not discoverable.
+- APK support requires the Androguard and Loguru packages used by `backend/analyzer/apk_analyzer.py`.
 
-The backend dependencies are pinned or constrained in [backend/requirements.txt](backend/requirements.txt). APK uploads also require the FastAPI multipart form dependency available in the active environment.
+Install Python dependencies from [backend/requirements.txt](backend/requirements.txt). On a clean environment, verify that the APK and native OCR/QR prerequisites are available before using those scanners.
 
 ## Setup and Run
 
-From the repository root, create or activate a virtual environment and install backend dependencies:
+From the repository root on Windows PowerShell:
 
 ```powershell
 py -m venv .venv
-.\\.venv\\Scripts\\Activate.ps1
-py -m pip install -r backend\\requirements.txt
+.\.venv\Scripts\Activate.ps1
+py -m pip install -r backend\requirements.txt
 ```
 
 Start the backend in one terminal:
 
 ```powershell
-.\\.venv\\Scripts\\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Install and start the frontend in another terminal:
+Start the frontend in another terminal:
 
 ```powershell
 Set-Location frontend
@@ -83,100 +84,92 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The backend OpenAPI UI is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Open [http://localhost:3000](http://localhost:3000). The backend API documentation is at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). The frontend requires the backend health check to be reachable and initially shows the login page.
 
-The frontend API base URL is currently hard-coded to `http://127.0.0.1:8000` in `frontend/src/api.js`. If it changes, update the backend CORS configuration in `backend/main.py` as well.
+Demo credentials are displayed on the login screen:
 
-## Configuration
+| Username | Password | Role returned |
+|---|---|---|
+| `admin` | `password123` | `admin` |
+| `analyst` | `safeshield2026` | `analyst` |
+| `demo` | `demo123` | `analyst` |
 
-MongoDB is optional. Create `backend/.env` only when persistence is needed:
+The frontend stores the returned token, username, and role in browser `localStorage` under `ss_token`, `ss_username`, and `ss_role`. This is prototype behavior, not a production session implementation.
+
+## Configuration and Persistence
+
+Create `backend/.env` only when using MongoDB:
 
 ```dotenv
 MONGODB_URI=mongodb://localhost:27017
 MONGODB_DATABASE=safeshield
 ```
 
-Without `MONGODB_URI`, analysis still runs and results are returned without being saved. When MongoDB is configured but insertion fails, the message and URL endpoints return HTTP 503 after analysis.
+`backend/database.py` prefers MongoDB when a URI is configured. If MongoDB is absent or a write/query fails, it falls back to `backend/data/analyses_history.json`. Local history is newest-first and limited to 500 records. Message persistence stores only a SHA-256 hash, never message plaintext; history responses also remove any accidental plaintext field.
 
-Do not commit API keys, credentials, private datasets, generated virtual environments, or sensitive provider responses.
+The backend CORS allowlist includes local port 3000, the configured Render frontend origin in `backend/main.py`, and Chrome extension origins matching `chrome-extension://*`. Keep CORS and the hard-coded frontend URL synchronized when deployment targets change.
 
 ## API Quick Reference
 
 | Method | Route | Request | Purpose |
 |---|---|---|---|
 | GET | `/` | none | Service metadata and documentation links |
-| GET | `/health` | none | Health response |
-| POST | `/analyze/message` | `{ "message": "..." }` | Analyze message risk |
-| POST | `/analyze/url` | `{ "url": "..." }` | Analyze URL risk |
-| POST | `/analyze/apk` | `multipart/form-data` field `file` | Analyze an APK upload |
+| GET | `/health` | none | Health response and version |
+| POST | `/login` | `{ "username": "...", "password": "..." }` | Demo credential check and token generation |
+| POST | `/analyze/message` | `{ "message": "..." }` | Message risk analysis |
+| POST | `/analyze/url` | `{ "url": "..." }` | URL risk analysis and live telemetry |
+| POST | `/analyze/image` | multipart field `file` | OCR, QR, URL, and message analysis |
+| POST | `/analyze/apk` | multipart field `file` | APK static analysis |
+| GET | `/history` | optional `scan_type`, `limit` | Stored analyses, newest first |
+| GET | `/reports/stats` | none | Aggregate counts by verdict, risk level, and scan type |
 
-Message requests accept 1-5000 characters. URL requests accept 1-2048 characters. Unknown JSON fields are rejected, and blank values are rejected after trimming.
+Message input is 1-5000 characters and URL input is 1-2048 characters. Request models reject unknown JSON fields and blank values are rejected after trimming. Analysis IDs use the format `SS-XXXXXXXXXX`.
 
-Message and URL responses include an `SS-XXXXXXXXXX` analysis ID, `risk_score`, `risk_level`, `category`, `confidence`, `reasons`, `detected_indicators`, `recommendation`, `model_prediction`, `model_confidence`, and `rule_confidence`. URL responses additionally include `original_url`, `normalized_url`, `verdict`, and `domain_valid`.
+Message and URL responses expose `risk_score`, `risk_level`, `category`, `confidence`, `reasons`, `detected_indicators`, `recommendation`, `model_prediction`, `model_confidence`, and `rule_confidence`. URL responses additionally expose original/normalized URLs, `verdict`, `domain_valid`, `live_inspection`, and `scoring_breakdown`. Image responses expose OCR/QR status and nested URL/message results. APK responses include `success`, file/package metadata, hash, permissions, static findings, score, risk level, and verdict.
 
-Message risk levels are `LOW`, `MEDIUM`, `HIGH`, or `CRITICAL` at score thresholds 25, 50, and 75. URL verdicts are `SAFE` or `FRAUD`; URL verdict and numeric score are related but not identical because suspicious rule findings can force a fraud verdict below the high-score threshold.
+Message risk levels are `LOW`, `MEDIUM`, `HIGH`, and `CRITICAL` at score thresholds 25, 50, and 75. URL and image verdicts are `SAFE`, `SUSPICIOUS`, or `FRAUD`; a verdict can be stricter than the numeric score when rules or live evidence require it. APK verdicts are `low_risk`, `suspicious`, or `dangerous`.
 
-APK responses include file metadata, SHA-256, package and version information, permissions, suspicious permissions, API findings, component counts, a score from 0 to 100, and a verdict of `low_risk`, `suspicious`, or `dangerous`.
+## Tests and Models
 
-## Analysis Behavior
-
-### Messages
-
-The message analyzer normalizes whitespace and checks word-boundary patterns for urgency, banking, credentials, financial rewards, downloads, links, threats, and sensitive information. Requests for credentials or sensitive information receive additional indicators. The risk engine combines rule points with an optional `backend/ml/models/message_model.joblib` prediction and caps non-suspicious messages below 25.
-
-### URLs
-
-The URL analyzer normalizes the URL, removes selected tracking parameters, extracts structural features, evaluates URL rules, and optionally loads `url_checker/model/url_model_calibrated.pkl` or `url_model.pkl`. Model probability contributes 60% and rule probability 40%. The analyzer also handles malformed hosts, IP addresses, punycode, and suspicious URL structures.
-
-### APKs
-
-The APK analyzer parses the uploaded package with Androguard, calculates a SHA-256 hash, reads package metadata and permissions, searches DEX content for suspicious APIs, counts components, and adds risk points for high-risk capabilities. It does not execute the APK and should not be treated as a full malware verdict.
-
-## Tests and Model Commands
-
-Run backend API tests from the repository root:
+Run backend tests from the repository root:
 
 ```powershell
-.\\.venv\\Scripts\\python.exe -m unittest discover -s backend -p "test_*.py"
+.\.venv\Scripts\python.exe -m unittest discover -s backend -p "test_*.py"
 ```
 
-Run URL rule checks and evaluation:
+Run URL checks and evaluation:
 
 ```powershell
 Set-Location url_checker
-..\\.venv\\Scripts\\python.exe scripts\\test_rule_check.py
-..\\.venv\\Scripts\\python.exe scripts\\evaluate_url_checker.py
+..\.venv\Scripts\python.exe scripts\test_rule_check.py
+..\.venv\Scripts\python.exe scripts\evaluate_url_checker.py
 ```
 
-Train the message model:
+Train models:
 
 ```powershell
 Set-Location backend
-..\\.venv\\Scripts\\python.exe ml\\train_message_model.py
+..\.venv\Scripts\python.exe ml\train_message_model.py
+
+Set-Location ..\url_checker
+..\.venv\Scripts\python.exe train_model.py
 ```
 
-Train URL models:
-
-```powershell
-Set-Location url_checker
-..\\.venv\\Scripts\\python.exe train_model.py
-```
-
-The analyzers continue with rules when model artifacts are missing or incompatible and report the model as unavailable.
+Runtime model paths are `backend/ml/models/message_model.joblib` and, for URLs, `url_checker/model/url_model_calibrated.pkl` with fallback to `url_model.pkl`. Model loading is lazy and failures degrade to rule-only analysis with `model_prediction: "unavailable"`.
 
 ## Browser Extension
 
-The extension is a Manifest V3 popup prototype. To load it in Chrome, open `chrome://extensions/`, enable Developer mode, choose **Load unpacked**, and select the `extension/` directory. Its current behavior is local-only and stores its last result under `safeShieldLastResult`; backend integration is not implemented.
+Load `extension/` through Chrome `chrome://extensions/` with Developer mode enabled. The extension is a standalone popup prototype. Its local last-result key is `safeShieldLastResult`; backend integration and content-script inspection are not implemented.
 
-## Development Guidance
+## AI Development Rules
 
-- Preserve public response fields when changing analyzer internals.
-- Keep user-facing explanations deterministic and understandable.
-- Treat URL normalization as part of the scoring contract.
-- Keep message plaintext out of logs and persistence.
-- Add focused backend tests when changing rules, thresholds, schemas, persistence, or model loading.
-- Update [ARCHITECTURE.md](ARCHITECTURE.md) whenever a route, integration, model path, or implementation status changes.
+- Treat the implementation as the source of truth and update this README and [ARCHITECTURE.md](ARCHITECTURE.md) when routes, model paths, integrations, or status change.
+- Preserve response fields and explainability because the React pages and tests consume them.
+- Keep message plaintext out of persistence and logs.
+- Test rule thresholds, URL normalization, allowlist/live-inspection fallback, upload validation, model-unavailable behavior, and persistence failure paths when changing them.
+- Avoid trusting a model score alone. URL live evidence, trusted-domain behavior, deterministic rules, and verdict logic are separate parts of the contract.
+- Do not expose API keys, credentials, private datasets, raw provider responses, or generated environments in commits.
 
 ## License
 
-This project is currently intended for educational and prototype use in a cybersecurity context.
+SafeShield is currently intended for educational and prototype use in a cybersecurity context.

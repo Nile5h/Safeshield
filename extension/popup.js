@@ -259,26 +259,30 @@ function renderScanResult(result) {
     mlVal.textContent     = '0%';
     mlBar.style.width     = '0%';
     sumText.textContent   = '100% Trusted Organization Domain match (Instant 0 ms bypass).';
-  } else if (breakdown.dynamic_heuristics_weight_pct === 100 || breakdown.evaluation_tier?.includes('Tier 1')) {
-    tierBadge.textContent = 'TIER 1: LIVE DYNAMIC';
+  } else if (breakdown.dynamic_heuristics_weight_pct > 0) {
+    const dynW  = Number(breakdown.dynamic_heuristics_weight_pct ?? 35);
+    const statW = Number(breakdown.static_heuristics_weight_pct ?? 40);
+    const mlW   = Number(breakdown.ml_model_weight_pct ?? 25);
+
+    tierBadge.textContent = breakdown.tier_label || 'DYNAMIC ACTIVE (35/40/25)';
     tierBadge.className   = 'tier-badge tier-dynamic';
-    dynVal.textContent    = '100%';
-    dynBar.style.width    = '100%';
-    statVal.textContent   = '0%';
-    statBar.style.width   = '0%';
-    mlVal.textContent     = '0%';
-    mlBar.style.width     = '0%';
-    sumText.textContent   = 'Dynamic Heuristic Verifications (DOM/Forms/Payloads) prioritized with 100% override.';
+    dynVal.textContent    = `${dynW}%`;
+    dynBar.style.width    = `${dynW}%`;
+    statVal.textContent   = `${statW}%`;
+    statBar.style.width   = `${statW}%`;
+    mlVal.textContent     = `${mlW}%`;
+    mlBar.style.width     = `${mlW}%`;
+    sumText.textContent   = breakdown.summary || `Tripartite Scoring: Dynamic Heuristics (${dynW}%) | Static Heuristics (${statW}%) | ML Model (${mlW}%).`;
   } else {
-    // Tier 2 Fallback
-    const dynW  = Number(breakdown.dynamic_heuristics_weight_pct ?? 0);
+    // Fallback
+    const dynW  = 0;
     const statW = Number(breakdown.static_heuristics_weight_pct ?? 60);
     const mlW   = Number(breakdown.ml_model_weight_pct ?? 40);
 
-    tierBadge.textContent = 'TIER 2: STATIC FALLBACK';
+    tierBadge.textContent = breakdown.tier_label || 'STATIC FALLBACK (0/60/40)';
     tierBadge.className   = 'tier-badge tier-fallback';
-    dynVal.textContent    = `${dynW}%`;
-    dynBar.style.width    = `${dynW}%`;
+    dynVal.textContent    = `0%`;
+    dynBar.style.width    = `0%`;
     statVal.textContent   = `${statW}%`;
     statBar.style.width   = `${statW}%`;
     mlVal.textContent     = `${mlW}%`;
@@ -314,9 +318,9 @@ function renderScanResult(result) {
   }
 
   updateCheckRow('pwd', dynChecks.password_form_origin || { status: 'PASS' });
-  updateCheckRow('iframe', dynChecks.zero_size_iframes || { status: 'PASS' });
-  updateCheckRow('brand', dynChecks.brand_domain_match || { status: 'PASS' });
   updateCheckRow('payload', dynChecks.drive_by_payloads || { status: 'PASS' });
+  updateCheckRow('brand', dynChecks.brand_domain_match || { status: 'PASS' });
+  updateCheckRow('iframe', dynChecks.zero_size_iframes || { status: 'PASS' });
 
   // ── Reasons
   const reasons = Array.isArray(result.reasons) && result.reasons.length

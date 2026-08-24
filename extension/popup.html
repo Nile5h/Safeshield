@@ -114,7 +114,7 @@
 
             <!-- 4 Dynamic Heuristic Verification Checks -->
             <div class="dynamic-checks-block">
-              <span class="block-sublabel">Dynamic Heuristic Verifications:</span>
+              <span class="block-sublabel">Dynamic Heuristic Verifications (35% Share):</span>
               <div class="dynamic-checks-grid" id="dynamic-checks-grid">
                 <div class="dynamic-check-row" id="row-pwd">
                   <div class="check-left">
@@ -122,28 +122,8 @@
                     <span class="check-name">Password Form Origin Safe</span>
                   </div>
                   <div class="check-right">
-                    <span class="check-weight-tag">35%</span>
+                    <span class="check-weight-tag" title="Cybersecurity Severity: CRITICAL (Account Takeover / Credential Theft)">35%</span>
                     <span class="check-badge pass" id="badge-pwd">PASS</span>
-                  </div>
-                </div>
-                <div class="dynamic-check-row" id="row-iframe">
-                  <div class="check-left">
-                    <span class="check-icon pass" id="icon-iframe">✓</span>
-                    <span class="check-name">Zero-Size Iframes Clear</span>
-                  </div>
-                  <div class="check-right">
-                    <span class="check-weight-tag">20%</span>
-                    <span class="check-badge pass" id="badge-iframe">PASS</span>
-                  </div>
-                </div>
-                <div class="dynamic-check-row" id="row-brand">
-                  <div class="check-left">
-                    <span class="check-icon pass" id="icon-brand">✓</span>
-                    <span class="check-name">Brand / Domain Match</span>
-                  </div>
-                  <div class="check-right">
-                    <span class="check-weight-tag">25%</span>
-                    <span class="check-badge pass" id="badge-brand">PASS</span>
                   </div>
                 </div>
                 <div class="dynamic-check-row" id="row-payload">
@@ -152,8 +132,28 @@
                     <span class="check-name">Drive-By Payloads Clear</span>
                   </div>
                   <div class="check-right">
-                    <span class="check-weight-tag">20%</span>
+                    <span class="check-weight-tag" title="Cybersecurity Severity: CRITICAL (Malware / Ransomware Execution)">30%</span>
                     <span class="check-badge pass" id="badge-payload">PASS</span>
+                  </div>
+                </div>
+                <div class="dynamic-check-row" id="row-brand">
+                  <div class="check-left">
+                    <span class="check-icon pass" id="icon-brand">✓</span>
+                    <span class="check-name">Brand / Domain Match</span>
+                  </div>
+                  <div class="check-right">
+                    <span class="check-weight-tag" title="Cybersecurity Severity: HIGH (Phishing Impersonation)">20%</span>
+                    <span class="check-badge pass" id="badge-brand">PASS</span>
+                  </div>
+                </div>
+                <div class="dynamic-check-row" id="row-iframe">
+                  <div class="check-left">
+                    <span class="check-icon pass" id="icon-iframe">✓</span>
+                    <span class="check-name">Zero-Size Iframes Clear</span>
+                  </div>
+                  <div class="check-right">
+                    <span class="check-weight-tag" title="Cybersecurity Severity: MEDIUM-HIGH (Clickjacking / Hidden Overlay)">15%</span>
+                    <span class="check-badge pass" id="badge-iframe">PASS</span>
                   </div>
                 </div>
               </div>

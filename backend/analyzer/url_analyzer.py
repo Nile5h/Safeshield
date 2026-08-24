@@ -258,26 +258,30 @@ def analyze_url(url: str) -> URLRiskAnalysis:
             "password_form_origin": {
                 "name": "Password Form Origin Safe",
                 "weight_pct": 35,
+                "severity": "CRITICAL",
                 "status": "PASS",
                 "details": "Verified official trusted domain origin",
             },
-            "zero_size_iframes": {
-                "name": "Zero-Size Iframes Clear",
-                "weight_pct": 20,
+            "drive_by_payloads": {
+                "name": "Drive-By Payloads Clear",
+                "weight_pct": 30,
+                "severity": "CRITICAL",
                 "status": "PASS",
-                "details": "No hidden or zero-pixel iframes present",
+                "details": "0 executable payload links",
             },
             "brand_domain_match": {
                 "name": "Brand / Domain Match",
-                "weight_pct": 25,
+                "weight_pct": 20,
+                "severity": "HIGH",
                 "status": "PASS",
                 "details": "Official brand domain identity verified",
             },
-            "drive_by_payloads": {
-                "name": "Drive-By Payloads Clear",
-                "weight_pct": 20,
+            "zero_size_iframes": {
+                "name": "Zero-Size Iframes Clear",
+                "weight_pct": 15,
+                "severity": "MEDIUM-HIGH",
                 "status": "PASS",
-                "details": "0 executable payload links",
+                "details": "No hidden or zero-pixel iframes present",
             },
         }
         live_telemetry["dynamic_verifications"] = default_verifications
@@ -398,46 +402,86 @@ def analyze_url(url: str) -> URLRiskAnalysis:
         live_telemetry["fallback_reason"] = "Invalid domain or non-HTTP scheme"
 
     # ══════════════════════════════════════════════════════════════════════════
-    # STEP 4: Scoring Engine & Hierarchy Resolution
+    # STEP 4: Tripartite Scoring Fusion Engine
     # ══════════════════════════════════════════════════════════════════════════
-    if tier1_triggered:
-        # ── TIER 1: LIVE DYNAMIC INSPECTION FRAUD VERDICT (90-100) ────────────
-        score = min(100, 90 + round(live_extra_penalty * 10))
-        verdict = "FRAUD"
-        risk_level = "CRITICAL"
+    if live_reachable:
+        # ── DYNAMIC LIVE INSPECTION ACTIVE (35% Dynamic, 40% Static, 25% ML) ──
+        w_dyn = 0.35
+        w_rule = 0.40
+        w_ml = 0.25
 
+        # Calculate dynamic risk score (0.0 to 1.0) from the 4 cybersecurity checks
+        dyn_checks = live_telemetry.get("dynamic_verifications", {})
+        dyn_risk_score = 0.0
+        for key, check in dyn_checks.items():
+            if check.get("status") == "FAIL":
+                dyn_risk_score += check.get("weight_pct", 0) / 100.0
+
+        # Add malicious Content-Type header penalty if present
+        if page.get("suspicious_content_type"):
+            dyn_risk_score += 0.40
+
+        dyn_risk_score = min(1.0, max(0.0, dyn_risk_score))
+
+        effective_ml_prob = model_probability if model_prediction != "unavailable" else rule_score
+        combined_prob = (w_dyn * dyn_risk_score) + (w_rule * rule_score) + (w_ml * effective_ml_prob)
+        score = round(combined_prob * 100)
+
+        # Critical threat enforcement: if severe live threat (credential theft / drive-by) or severe static fraud
+        if force_fraud or "credential_harvesting" in live_indicators or "drive_by_download_risk" in live_indicators:
+            score = max(score, 75)
+            verdict = "FRAUD"
+            risk_level = "CRITICAL"
+        elif score >= 50:
+            verdict = "FRAUD"
+            risk_level = _risk_level(score)
+        else:
+            verdict = "SAFE"
+            risk_level = _risk_level(score)
+
+        # Category resolution
         if "credential_harvesting" in live_indicators:
             category = "credential_harvesting"
         elif "drive_by_download_risk" in live_indicators:
             category = "drive_by_download"
         elif "malicious_content_type" in live_indicators:
             category = "malicious_download"
-        else:
+        elif suspicious or rule_score >= 0.20:
             category = "phishing"
+        else:
+            category = "benign"
+
+        # Explainability guard: if all dynamic checks PASS and no static rules flagged (clean site)
+        if len(live_indicators) == 0 and len(heuristic_reasons) == 0:
+            score = min(score, 24)
+            verdict = "SAFE"
+            risk_level = "LOW"
+            category = "benign"
 
         breakdown = {
-            "evaluation_tier": "Tier 1: Dynamic Live Inspection",
-            "tier_label": "TIER 1: LIVE DYNAMIC VERIFIED",
-            "dynamic_heuristics_weight_pct": 100,
-            "static_heuristics_weight_pct": 0,
-            "ml_model_weight_pct": 0,
+            "evaluation_tier": "Tripartite Dynamic Inspection & Heuristics",
+            "tier_label": "DYNAMIC ACTIVE (35/40/25)",
+            "dynamic_heuristics_weight_pct": 35,
+            "static_heuristics_weight_pct": 40,
+            "ml_model_weight_pct": 25,
             "allowlist_weight_pct": 0,
             "dynamic_verifications_active": True,
-            "dynamic_verifications": live_telemetry.get("dynamic_verifications", {}),
-            "live_threats_found": live_indicators,
-            "live_penalty_applied": round(live_extra_penalty, 2),
-            "summary": "100% Dynamic Heuristic Verifications Priority Override (Confirmed live DOM/payload threat)",
+            "dynamic_verifications": dyn_checks,
+            "dynamic_risk_score": round(dyn_risk_score, 2),
+            "rule_score": round(rule_score, 2),
+            "ml_probability": round(model_probability, 2),
+            "summary": "Scoring Weightage: Dynamic Heuristics (35%) | Static Heuristics (40%) | ML Model (25%)",
         }
 
         final_reasons = [
-            "Evaluation Source: Tier 1 - Dynamic Live Website Inspection",
-            "Scoring Weightage: Dynamic Heuristic Verifications (100% Priority Override) | Static Heuristics (0%) | ML Model (0%)",
+            "Evaluation Source: Dynamic Website Inspection & Tripartite Scoring",
+            "Scoring Weightage: Dynamic Heuristic Verifications (35%) | Static Heuristics (40%) | ML Model (25%)",
         ] + live_reasons + heuristic_reasons
 
-        confidence = 98
+        confidence = max(model_confidence, 88) if len(live_indicators) > 0 else model_confidence
 
     else:
-        # ── TIER 2: STATIC HEURISTICS (60%) & ML MODEL (40%) FALLBACK ─────────
+        # ── STATIC HEURISTICS (60%) & ML MODEL (40%) FALLBACK ─────────────────
         model_unavailable = model_prediction == "unavailable"
         combined_prob = _confidence_weighted_blend(
             model_probability,
@@ -483,18 +527,16 @@ def analyze_url(url: str) -> URLRiskAnalysis:
                 clean_note = "Dynamic inspection timed out (>3s)"
             elif live_telemetry.get("status_code") in (403, 429):
                 clean_note = "Target site blocked automated inspection"
-            elif live_reachable:
-                clean_note = "Live inspection produced no definitive threats"
             else:
                 clean_note = "Live inspection unavailable"
-            source_header = f"Evaluation Source: Tier 2 - Static Heuristics (60%) & ML Model (40%) Fallback ({clean_note})"
+            source_header = f"Evaluation Source: Static Heuristics (60%) & ML Model (40%) Fallback ({clean_note})"
         else:
-            clean_note = "No live threats detected"
-            source_header = "Evaluation Source: Tier 2 - Static Heuristics (60%) & ML Model (40%) Fallback"
+            clean_note = "Dynamic inspection unavailable"
+            source_header = "Evaluation Source: Static Heuristics (60%) & ML Model (40%) Fallback"
 
         breakdown = {
-            "evaluation_tier": "Tier 2: Static Heuristics & ML Fallback",
-            "tier_label": "TIER 2: STATIC FALLBACK",
+            "evaluation_tier": "Static Heuristics & ML Fallback",
+            "tier_label": "STATIC FALLBACK (0/60/40)",
             "dynamic_heuristics_weight_pct": 0,
             "static_heuristics_weight_pct": rule_w_pct,
             "ml_model_weight_pct": ml_w_pct,
